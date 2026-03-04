@@ -17,7 +17,7 @@ class SuperAdminSeeder extends Seeder
             ['email' => 'admin@ilkom-uq.ac.id'],
             [
                 'name' => 'Super Admin',
-                'password' => Hash::make('password'),
+                'password' => Hash::driver('bcrypt')->make('password'),
                 'email_verified_at' => now(),
             ]
         );
