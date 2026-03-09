@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Berita Prodi D4 Rekayasa Perangkat Lunak')
+@section('title', 'Berita Prodi D4 Teknologi Rekayasa Perangkat Lunak')
 
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
         <h1 class="h3 mb-1">Berita Prodi</h1>
-        <p class="text-muted mb-0">Informasi terbaru Program Studi D4 Rekayasa Perangkat Lunak.</p>
+        <p class="text-muted mb-0">Informasi terbaru Program Studi D4 Teknologi Rekayasa Perangkat Lunak.</p>
     </div>
 </div>
 

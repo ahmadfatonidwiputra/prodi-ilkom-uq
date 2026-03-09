@@ -6,7 +6,7 @@
 <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
         <h1 class="h3 mb-1">Pengumuman</h1>
-        <p class="text-muted mb-0">Informasi resmi dan pengumuman terbaru Program Studi D4 Rekayasa Perangkat Lunak.</p>
+        <p class="text-muted mb-0">Informasi resmi dan pengumuman terbaru Program Studi D4 Teknologi Rekayasa Perangkat Lunak.</p>
     </div>
 </div>
 

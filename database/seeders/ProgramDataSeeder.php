@@ -20,10 +20,10 @@ class ProgramDataSeeder extends Seeder
      */
     public function run(): void
     {
-        ProfilProdi::firstOrCreate(
+        ProfilProdi::updateOrCreate(
             ['id' => 1],
             [
-                'tentang' => 'Program Studi D4 Rekayasa Perangkat Lunak UNBIM berfokus pada pengembangan perangkat lunak, sistem cerdas, dan teknologi terapan berbasis kebutuhan industri.',
+                'tentang' => 'Program Studi D4 Teknologi Rekayasa Perangkat Lunak UNBIM berfokus pada pengembangan perangkat lunak, sistem cerdas, dan teknologi terapan berbasis kebutuhan industri.',
                 'visi' => 'Menjadi program studi unggul di bidang komputasi terapan yang berdaya saing nasional.',
                 'misi' => "1. Menyelenggarakan pendidikan berkualitas berbasis proyek.\n2. Mengembangkan riset terapan di bidang komputer.\n3. Menguatkan kolaborasi dengan dunia industri.",
             ]
@@ -41,7 +41,7 @@ class ProgramDataSeeder extends Seeder
 
         $beritaData = [
             [
-                'judul' => 'Kolaborasi Prodi D4 Rekayasa Perangkat Lunak dengan Industri Lokal',
+                'judul' => 'Kolaborasi Prodi D4 Teknologi Rekayasa Perangkat Lunak dengan Industri Lokal',
                 'isi' => 'Program studi menjalin kerja sama dengan industri lokal untuk meningkatkan kesiapan lulusan dalam menghadapi kebutuhan dunia kerja digital.',
             ],
             [

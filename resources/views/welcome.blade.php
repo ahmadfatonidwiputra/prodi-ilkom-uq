@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Beranda Prodi D4 Rekayasa Perangkat Lunak')
+@section('title', 'Beranda Prodi D4 Teknologi Rekayasa Perangkat Lunak')
 
 @section('content')
 <div class="row g-4">
     <div class="col-lg-8">
         <div class="card border-0 shadow-sm h-100">
             <div class="card-body p-4">
-                <h1 class="h3 mb-3">Selamat Datang di Website Prodi D4 Rekayasa Perangkat Lunak</h1>
+                <h1 class="h3 mb-3">Selamat Datang di Website Prodi D4 Teknologi Rekayasa Perangkat Lunak</h1>
                 <p class="text-muted mb-4">Gunakan menu navigasi untuk menjelajahi profil, dosen, berita, galeri, dan informasi kontak program studi.</p>
                 <div class="d-flex flex-wrap gap-2">
                     <a href="{{ route('profil') }}" class="btn btn-outline-primary">Profil</a>

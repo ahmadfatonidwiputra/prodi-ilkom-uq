@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Program Studi D4 Rekayasa Perangkat Lunak')</title>
+    <title>@yield('title', 'Program Studi D4 Teknologi Rekayasa Perangkat Lunak')</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -71,7 +71,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="{{ route('home') }}">Prodi D4 Rekayasa Perangkat Lunak</a>
+            <a class="navbar-brand" href="{{ route('home') }}">Prodi D4 Teknologi Rekayasa Perangkat Lunak</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -116,7 +116,7 @@
     @if (request()->routeIs('home'))
         <section class="hero-home py-5 mb-4">
             <div class="container py-3 py-md-5">
-                <h1 class="display-5 fw-bold mb-3">Program Studi D4 Rekayasa Perangkat Lunak</h1>
+                <h1 class="display-5 fw-bold mb-3">Program Studi D4 Teknologi Rekayasa Perangkat Lunak</h1>
                 <p class="lead mb-4">
                     Universitas Bima Internasional (UNBIM) membangun ekosistem pembelajaran teknologi yang adaptif,
                     inovatif, dan berorientasi pada dampak nyata untuk masyarakat.
@@ -145,7 +145,7 @@
         <div class="container py-5">
             <div class="row g-4">
                 <div class="col-md-4">
-                    <h5 class="text-white fw-semibold">Program Studi D4 Rekayasa Perangkat Lunak</h5>
+                    <h5 class="text-white fw-semibold">Program Studi D4 Teknologi Rekayasa Perangkat Lunak</h5>
                     <p class="mb-0">Universitas Bima Internasional (UNBIM)</p>
                 </div>
                 <div class="col-md-4">
@@ -162,7 +162,7 @@
                 </div>
             </div>
             <hr class="border-secondary my-4">
-            <p class="mb-0 small">&copy; {{ date('Y') }} Prodi D4 Rekayasa Perangkat Lunak - Universitas Bima Internasional (UNBIM)</p>
+            <p class="mb-0 small">&copy; {{ date('Y') }} Prodi D4 Teknologi Rekayasa Perangkat Lunak - Universitas Bima Internasional (UNBIM)</p>
         </div>
     </footer>
 

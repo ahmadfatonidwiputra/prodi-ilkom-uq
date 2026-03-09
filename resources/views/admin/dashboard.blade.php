@@ -5,7 +5,7 @@
 @section('content')
 <div class="mb-4">
     <h2 class="display-6 fw-bold mb-1">Selamat Datang, Administrator</h2>
-    <p class="text-muted mb-0">Ringkasan aktivitas website Program Studi D4 Rekayasa Perangkat Lunak</p>
+    <p class="text-muted mb-0">Ringkasan aktivitas website Program Studi D4 Teknologi Rekayasa Perangkat Lunak</p>
 </div>
 
 <div class="row g-3 mb-4">

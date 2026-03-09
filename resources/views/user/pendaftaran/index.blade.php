@@ -8,7 +8,7 @@
         <div class="card border-0 shadow-sm">
             <div class="card-body p-4 p-lg-5">
                 <h1 class="h3 fw-bold mb-2">Formulir Pendaftaran</h1>
-                <p class="text-muted mb-4">Isi data berikut untuk mendaftar Program Studi D4 Rekayasa Perangkat Lunak.</p>
+                <p class="text-muted mb-4">Isi data berikut untuk mendaftar Program Studi D4 Teknologi Rekayasa Perangkat Lunak.</p>
 
                 @if (session('success'))
                     <div class="alert alert-success">{{ session('success') }}</div>

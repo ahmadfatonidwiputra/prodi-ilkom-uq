@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Admin Prodi D4 Rekayasa Perangkat Lunak')</title>
+    <title>@yield('title', 'Admin Prodi D4 Teknologi Rekayasa Perangkat Lunak')</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
@@ -140,7 +140,7 @@
     <aside class="sidebar p-3 p-lg-4 d-flex flex-column">
         <a href="{{ route('admin.dashboard') }}" class="brand mb-4">
             <span class="brand-logo"><i class="bi bi-shield-check"></i></span>
-            <span>UNBIM RPL Admin</span>
+            <span>UNBIM TRPL Admin</span>
         </a>
 
         <nav class="nav flex-column gap-1">
@@ -169,7 +169,7 @@
         <header class="topbar px-4 d-flex justify-content-between align-items-center">
             <div>
                 <h1 class="h4 fw-bold mb-0">@yield('title', 'Dashboard')</h1>
-                <small class="text-muted">Panel Administrator Program Studi D4 Rekayasa Perangkat Lunak</small>
+                <small class="text-muted">Panel Administrator Program Studi D4 Teknologi Rekayasa Perangkat Lunak</small>
             </div>
             <div class="d-flex align-items-center gap-3 text-dark">
                 <i class="bi bi-bell"></i>

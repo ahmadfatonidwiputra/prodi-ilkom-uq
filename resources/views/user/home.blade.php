@@ -1,10 +1,10 @@
 @extends('layouts.user')
 
-@section('title', 'Beranda - Prodi D4 Rekayasa Perangkat Lunak UNBIM')
+@section('title', 'Beranda - Prodi D4 Teknologi Rekayasa Perangkat Lunak UNBIM')
 
 @section('content')
 <div class="glass-card p-4 p-lg-5 mb-4">
-    <h2 class="fw-bold text-center mb-4">Mengapa D4 Rekayasa Perangkat Lunak UNBIM?</h2>
+    <h2 class="fw-bold text-center mb-4">Mengapa D4 Teknologi Rekayasa Perangkat Lunak UNBIM?</h2>
 
     <div class="row g-4 text-center">
         @forelse ($fasilitasUnggulan as $item)
