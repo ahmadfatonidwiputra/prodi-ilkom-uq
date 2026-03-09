@@ -5,7 +5,7 @@
 @section('content')
 <div class="mb-4">
     <h2 class="display-6 fw-bold mb-1">Selamat Datang, Administrator</h2>
-    <p class="text-light-emphasis mb-0">Ringkasan aktivitas website Program Studi D4 Rekayasa Perangkat Lunak</p>
+    <p class="text-muted mb-0">Ringkasan aktivitas website Program Studi D4 Rekayasa Perangkat Lunak</p>
 </div>
 
 <div class="row g-3 mb-4">
@@ -53,7 +53,7 @@
             <h3 class="h4 fw-bold mb-3">Aktivitas Terbaru</h3>
             <div class="list-group list-group-flush">
                 @forelse ($aktivitasTerbaru as $aktivitas)
-                    <div class="list-group-item bg-transparent text-light border-secondary-subtle px-0 py-3">
+                    <div class="list-group-item bg-transparent text-dark border-secondary-subtle px-0 py-3">
                         <div class="d-flex justify-content-between gap-3">
                             <div class="d-flex align-items-start gap-2">
                                 <i class="bi bi-{{ $aktivitas['ikon'] }} text-info"></i>

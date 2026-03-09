@@ -150,7 +150,7 @@
                 </div>
                 <div class="col-md-4">
                     <h6 class="text-white fw-semibold">Alamat</h6>
-                    <p class="mb-0">Jl. Kampus UNBIM, Kota Bima, Nusa Tenggara Barat</p>
+                    <p class="mb-0">Jl. Medika Farma Husada, Batu Ringgit, Sekarbela, Kota Mataram, NTB.</p>
                 </div>
                 <div class="col-md-4">
                     <h6 class="text-white fw-semibold">Sosial Media</h6>

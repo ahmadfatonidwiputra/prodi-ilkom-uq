@@ -11,14 +11,14 @@
 
     <style>
         :root {
-            --uq-blue: #0077d9;
-            --uq-blue-deep: #032a6c;
-            --uq-blue-ink: #041a44;
-            --uq-slate: #eef3fb;
+            --uq-purple: #8b3dff;
+            --uq-purple-deep: #4e1f9c;
+            --uq-purple-ink: #2e135f;
+            --uq-slate: #f4ecff;
         }
 
         body {
-            background: linear-gradient(160deg, #f6f8fd 0%, #eef3fb 45%, #f9fbff 100%);
+            background: linear-gradient(160deg, #fbf8ff 0%, #f4ecff 45%, #fcf9ff 100%);
             color: #0d1b2d;
             min-height: 100vh;
             font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -34,7 +34,7 @@
             width: 44px;
             height: 44px;
             border-radius: 12px;
-            background: linear-gradient(135deg, var(--uq-blue), #28b7ff);
+            background: linear-gradient(135deg, var(--uq-purple), #bb7cff);
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -49,13 +49,13 @@
 
         .nav-link.active,
         .nav-link:hover {
-            color: var(--uq-blue);
+            color: var(--uq-purple);
         }
 
         .btn-daftar {
             border-radius: 12px;
             padding: 0.55rem 1.05rem;
-            background: linear-gradient(120deg, var(--uq-blue), #0d9bff);
+            background: linear-gradient(120deg, var(--uq-purple-deep), var(--uq-purple));
             border: none;
             color: #fff;
             font-weight: 600;
@@ -63,7 +63,7 @@
 
         .hero-wrap {
             background:
-                linear-gradient(110deg, rgba(4, 26, 68, 0.92) 35%, rgba(4, 26, 68, 0.65) 58%, rgba(4, 26, 68, 0.25) 100%),
+                linear-gradient(110deg, rgba(46, 19, 95, 0.92) 35%, rgba(78, 31, 156, 0.68) 58%, rgba(78, 31, 156, 0.25) 100%),
                 url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1800&q=80') center/cover;
             border-radius: 0 0 24px 24px;
             color: #fff;
@@ -78,7 +78,7 @@
             content: "";
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at 10% 20%, rgba(0, 183, 255, 0.32), transparent 38%);
+            background: radial-gradient(circle at 10% 20%, rgba(178, 116, 255, 0.38), transparent 38%);
         }
 
         .hero-content {
@@ -106,15 +106,15 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(130deg, #d6ebff, #eff7ff);
-            color: #0d69c7;
+            background: linear-gradient(130deg, #f0e4ff, #fbf5ff);
+            color: #6a2cc6;
             font-size: 1.25rem;
         }
 
         .footer-user {
             margin-top: 3rem;
-            background: linear-gradient(120deg, var(--uq-blue-ink), var(--uq-blue-deep));
-            color: #dbeaff;
+            background: linear-gradient(120deg, var(--uq-purple-ink), var(--uq-purple-deep));
+            color: #efe4ff;
         }
 
         @media (max-width: 992px) {
@@ -136,7 +136,7 @@
     <div class="container">
         <a class="navbar-brand d-flex align-items-center gap-2" href="{{ route('home') }}">
             <span class="brand-mark"><i class="bi bi-mortarboard"></i></span>
-            <span class="fw-bold fs-4 text-primary">UNBIM <span class="text-dark fs-5">D4 RPL</span></span>
+            <span class="fw-bold fs-4" style="color: var(--uq-purple-deep);">UNBIM <span class="text-dark fs-5">D4 RPL</span></span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navUser" aria-controls="navUser" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -184,7 +184,7 @@
             <div class="col-md-6">
                 <h5 class="fw-bold mb-2">Program Studi D4 Rekayasa Perangkat Lunak</h5>
                 <p class="mb-1">Universitas Bima Internasional (UNBIM)</p>
-                <small>Jl. H. Badruddin, Lombok Tengah, Nusa Tenggara Barat</small>
+                <small>Jl. Medika Farma Husada, Batu Ringgit, Sekarbela, Kota Mataram, NTB.</small>
             </div>
             <div class="col-md-6 text-md-end">
                 <p class="mb-2">Social Media</p>
