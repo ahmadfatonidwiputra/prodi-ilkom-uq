@@ -3,7 +3,7 @@
 @section('title', 'Dosen')
 
 @section('content')
-<h1 class="h3 mb-4">Dosen Program Studi Ilmu Komputer</h1>
+<h1 class="h3 mb-4">Dosen Program Studi D4 Rekayasa Perangkat Lunak</h1>
 <div class="row g-4">
     @forelse ($dosens as $dosen)
         <div class="col-md-6 col-lg-4">

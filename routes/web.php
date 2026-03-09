@@ -1,16 +1,26 @@
 <?php
 
+use App\Http\Controllers\Admin\AlumniController as AdminAlumniController;
 use App\Http\Controllers\Admin\BeritaController as AdminBeritaController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DosenController as AdminDosenController;
+use App\Http\Controllers\Admin\FasilitasController as AdminFasilitasController;
 use App\Http\Controllers\Admin\GaleriController as AdminGaleriController;
+use App\Http\Controllers\Admin\KurikulumController as AdminKurikulumController;
+use App\Http\Controllers\Admin\MahasiswaController as AdminMahasiswaController;
+use App\Http\Controllers\Admin\PendaftaranController as AdminPendaftaranController;
 use App\Http\Controllers\Admin\PengumumanController as AdminPengumumanController;
 use App\Http\Controllers\Admin\ProfilController as AdminProfilController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\User\AlumniController as UserAlumniController;
 use App\Http\Controllers\User\BeritaController as UserBeritaController;
 use App\Http\Controllers\User\DosenController as UserDosenController;
+use App\Http\Controllers\User\FasilitasController as UserFasilitasController;
 use App\Http\Controllers\User\GaleriController as UserGaleriController;
 use App\Http\Controllers\User\HomeController as UserHomeController;
+use App\Http\Controllers\User\KurikulumController as UserKurikulumController;
+use App\Http\Controllers\User\MahasiswaController as UserMahasiswaController;
+use App\Http\Controllers\User\PendaftaranController as UserPendaftaranController;
 use App\Http\Controllers\User\PengumumanController as UserPengumumanController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,16 +35,31 @@ Route::get('/pengumuman/{pengumuman:slug}', [UserPengumumanController::class, 's
 Route::get('/galeri', [UserGaleriController::class, 'index'])->name('galeri');
 Route::get('/kontak', [UserHomeController::class, 'kontak'])->name('kontak');
 
+Route::get('/kurikulum', [UserKurikulumController::class, 'index'])->name('kurikulum');
+Route::get('/fasilitas', [UserFasilitasController::class, 'index'])->name('fasilitas');
+Route::get('/mahasiswa', [UserMahasiswaController::class, 'index'])->name('mahasiswa');
+Route::get('/alumni', [UserAlumniController::class, 'index'])->name('alumni');
+Route::get('/pendaftaran', [UserPendaftaranController::class, 'index'])->name('pendaftaran');
+Route::post('/pendaftaran', [UserPendaftaranController::class, 'store'])->name('pendaftaran.store');
+
 Route::middleware('auth')->get('/dashboard', function () {
     return redirect()->route('admin.dashboard');
 })->name('dashboard');
 
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
     Route::resource('/dosen', AdminDosenController::class)->parameters(['dosen' => 'dosen']);
     Route::resource('/berita', AdminBeritaController::class)->parameters(['berita' => 'berita']);
     Route::resource('/pengumuman', AdminPengumumanController::class)->parameters(['pengumuman' => 'pengumuman']);
     Route::resource('/galeri', AdminGaleriController::class)->parameters(['galeri' => 'galeri']);
+
+    Route::resource('/kurikulum', AdminKurikulumController::class)->parameters(['kurikulum' => 'kurikulum']);
+    Route::resource('/fasilitas', AdminFasilitasController::class)->parameters(['fasilitas' => 'fasilitas']);
+    Route::resource('/mahasiswa', AdminMahasiswaController::class)->parameters(['mahasiswa' => 'mahasiswa']);
+    Route::resource('/alumni', AdminAlumniController::class)->parameters(['alumni' => 'alumni']);
+    Route::resource('/pendaftaran', AdminPendaftaranController::class)->parameters(['pendaftaran' => 'pendaftaran']);
+
     Route::get('/profil', [AdminProfilController::class, 'edit'])->name('profil.edit');
     Route::put('/profil', [AdminProfilController::class, 'update'])->name('profil.update');
 });
@@ -45,4 +70,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

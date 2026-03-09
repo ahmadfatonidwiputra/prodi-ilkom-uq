@@ -6,7 +6,7 @@
 <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
         <h1 class="h3 mb-1">Data Dosen</h1>
-        <p class="text-muted mb-0">Kelola data dosen Program Studi Ilmu Komputer.</p>
+        <p class="text-muted mb-0">Kelola data dosen Program Studi D4 Rekayasa Perangkat Lunak.</p>
     </div>
     <a href="{{ route('admin.dosen.create') }}" class="btn btn-primary">+ Tambah Dosen</a>
 </div>

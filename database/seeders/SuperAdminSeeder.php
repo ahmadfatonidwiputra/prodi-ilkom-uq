@@ -14,7 +14,7 @@ class SuperAdminSeeder extends Seeder
     public function run(): void
     {
         User::updateOrCreate(
-            ['email' => 'admin@ilkom-uq.ac.id'],
+            ['email' => 'admin@unbim.ac.id'],
             [
                 'name' => 'Super Admin',
                 'password' => Hash::driver('bcrypt')->make('password'),

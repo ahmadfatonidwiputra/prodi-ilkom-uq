@@ -1,63 +1,97 @@
 @extends('layouts.admin')
 
-@section('title', 'Dashboard Admin')
+@section('title', 'Dashboard')
 
 @section('content')
-<div class="row g-4 mb-4">
+<div class="mb-4">
+    <h2 class="display-6 fw-bold mb-1">Selamat Datang, Administrator</h2>
+    <p class="text-light-emphasis mb-0">Ringkasan aktivitas website Program Studi D4 Rekayasa Perangkat Lunak</p>
+</div>
+
+<div class="row g-3 mb-4">
     <div class="col-md-6 col-xl-3">
-        <div class="card border-0 shadow-sm h-100">
-            <div class="card-body">
-                <p class="text-muted mb-2">Jumlah Dosen</p>
-                <h2 class="display-6 fw-bold text-primary mb-0">{{ $totalDosen }}</h2>
+        <div class="panel-card p-3 h-100 d-flex align-items-center gap-3">
+            <span class="metric-icon"><i class="bi bi-people"></i></span>
+            <div>
+                <div class="small text-secondary">Total Mahasiswa Aktif</div>
+                <div class="h4 fw-bold mb-0">{{ $metrics['totalMahasiswaAktif'] }}</div>
             </div>
         </div>
     </div>
     <div class="col-md-6 col-xl-3">
-        <div class="card border-0 shadow-sm h-100">
-            <div class="card-body">
-                <p class="text-muted mb-2">Jumlah Berita</p>
-                <h2 class="display-6 fw-bold text-success mb-0">{{ $totalBerita }}</h2>
+        <div class="panel-card p-3 h-100 d-flex align-items-center gap-3">
+            <span class="metric-icon"><i class="bi bi-arrow-repeat"></i></span>
+            <div>
+                <div class="small text-secondary">Halaman Diperbarui Hari Ini</div>
+                <div class="h4 fw-bold mb-0">{{ $metrics['halamanDiperbaruiHariIni'] }}</div>
             </div>
         </div>
     </div>
     <div class="col-md-6 col-xl-3">
-        <div class="card border-0 shadow-sm h-100">
-            <div class="card-body">
-                <p class="text-muted mb-2">Jumlah Pengumuman</p>
-                <h2 class="display-6 fw-bold text-info mb-0">{{ $totalPengumuman }}</h2>
+        <div class="panel-card p-3 h-100 d-flex align-items-center gap-3">
+            <span class="metric-icon"><i class="bi bi-person-plus"></i></span>
+            <div>
+                <div class="small text-secondary">Pendaftaran Baru</div>
+                <div class="h4 fw-bold mb-0">{{ $metrics['pendaftaranBaru'] }}</div>
             </div>
         </div>
     </div>
     <div class="col-md-6 col-xl-3">
-        <div class="card border-0 shadow-sm h-100">
-            <div class="card-body">
-                <p class="text-muted mb-2">Jumlah Galeri</p>
-                <h2 class="display-6 fw-bold text-warning mb-0">{{ $totalGaleri }}</h2>
+        <div class="panel-card p-3 h-100 d-flex align-items-center gap-3">
+            <span class="metric-icon"><i class="bi bi-clipboard-check"></i></span>
+            <div>
+                <div class="small text-secondary">Permintaan Update Profil</div>
+                <div class="h4 fw-bold mb-0">{{ $metrics['permintaanUpdateProfil'] }}</div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="card border-0 shadow-sm">
-    <div class="card-body">
-        <h3 class="h5 mb-3">Statistik Konten</h3>
-        @php
-            $totalKonten = $totalBerita + $totalPengumuman + $totalGaleri;
-            $persenBerita = $totalKonten > 0 ? round(($totalBerita / $totalKonten) * 100) : 0;
-            $persenPengumuman = $totalKonten > 0 ? round(($totalPengumuman / $totalKonten) * 100) : 0;
-            $persenGaleri = $totalKonten > 0 ? round(($totalGaleri / $totalKonten) * 100) : 0;
-        @endphp
+<div class="row g-4">
+    <div class="col-lg-7">
+        <div class="panel-card p-4 h-100">
+            <h3 class="h4 fw-bold mb-3">Aktivitas Terbaru</h3>
+            <div class="list-group list-group-flush">
+                @forelse ($aktivitasTerbaru as $aktivitas)
+                    <div class="list-group-item bg-transparent text-light border-secondary-subtle px-0 py-3">
+                        <div class="d-flex justify-content-between gap-3">
+                            <div class="d-flex align-items-start gap-2">
+                                <i class="bi bi-{{ $aktivitas['ikon'] }} text-info"></i>
+                                <div>
+                                    <div class="fw-semibold">{{ $aktivitas['judul'] }}</div>
+                                    <small class="text-secondary">{{ $aktivitas['waktu']->diffForHumans() }}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @empty
+                    <p class="text-secondary mb-0">Belum ada aktivitas terbaru.</p>
+                @endforelse
+            </div>
+        </div>
+    </div>
 
-        <p class="mb-2">Proporsi Konten (Berita, Pengumuman, Galeri)</p>
-        <div class="progress mb-3" role="progressbar" aria-label="Statistik Konten" aria-valuemin="0" aria-valuemax="100">
-            <div class="progress-bar bg-success" style="width: {{ $persenBerita }}%">{{ $persenBerita }}% Berita</div>
-            <div class="progress-bar bg-info text-dark" style="width: {{ $persenPengumuman }}%">{{ $persenPengumuman }}% Pengumuman</div>
-            <div class="progress-bar bg-warning text-dark" style="width: {{ $persenGaleri }}%">{{ $persenGaleri }}% Galeri</div>
+    <div class="col-lg-5">
+        <div class="panel-card p-4 mb-4">
+            <h3 class="h4 fw-bold mb-3">Quick Actions</h3>
+            <div class="row g-2">
+                <div class="col-6"><a href="{{ route('admin.berita.create') }}" class="btn btn-quick w-100"><i class="bi bi-newspaper me-1"></i> Buat Berita Baru</a></div>
+                <div class="col-6"><a href="{{ route('admin.kurikulum.index') }}" class="btn btn-quick w-100"><i class="bi bi-journal-text me-1"></i> Update Kurikulum</a></div>
+                <div class="col-6"><a href="{{ route('admin.profil.edit') }}" class="btn btn-quick w-100"><i class="bi bi-pencil-square me-1"></i> Edit Halaman Beranda</a></div>
+                <div class="col-6"><a href="{{ route('admin.pengumuman.create') }}" class="btn btn-quick w-100"><i class="bi bi-megaphone me-1"></i> Kirim Pengumuman</a></div>
+            </div>
         </div>
 
-        <p class="text-muted mb-0">
-            Total konten publik saat ini: <strong>{{ $totalKonten }}</strong> item.
-        </p>
+        <div class="panel-card p-4">
+            <h3 class="h5 fw-bold mb-3">Ringkasan Data</h3>
+            <div class="small">
+                <div class="d-flex justify-content-between py-2 border-bottom border-secondary-subtle"><span>Total Dosen</span><strong>{{ $metrics['totalDosen'] }}</strong></div>
+                <div class="d-flex justify-content-between py-2 border-bottom border-secondary-subtle"><span>Total Berita</span><strong>{{ $metrics['totalBerita'] }}</strong></div>
+                <div class="d-flex justify-content-between py-2 border-bottom border-secondary-subtle"><span>Total Pengumuman</span><strong>{{ $metrics['totalPengumuman'] }}</strong></div>
+                <div class="d-flex justify-content-between py-2 border-bottom border-secondary-subtle"><span>Total Galeri</span><strong>{{ $metrics['totalGaleri'] }}</strong></div>
+                <div class="d-flex justify-content-between py-2"><span>Total Alumni</span><strong>{{ $metrics['totalAlumni'] }}</strong></div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection
