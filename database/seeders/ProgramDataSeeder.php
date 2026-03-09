@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Alumni;
 use App\Models\Berita;
 use App\Models\Dosen;
 use App\Models\Fasilitas;
@@ -101,15 +100,6 @@ class ProgramDataSeeder extends Seeder
 
         foreach ($mahasiswaData as $mahasiswa) {
             Mahasiswa::firstOrCreate(['nim' => $mahasiswa['nim']], $mahasiswa);
-        }
-
-        $alumniData = [
-            ['nama' => 'M. Hendra', 'angkatan_lulus' => 2021, 'pekerjaan' => 'Backend Developer', 'perusahaan' => 'PT Nusantara Tech'],
-            ['nama' => 'Siti Rahmah', 'angkatan_lulus' => 2022, 'pekerjaan' => 'Data Analyst', 'perusahaan' => 'QH Data Lab'],
-        ];
-
-        foreach ($alumniData as $alumni) {
-            Alumni::firstOrCreate(['nama' => $alumni['nama'], 'angkatan_lulus' => $alumni['angkatan_lulus']], $alumni + ['testimoni' => null, 'foto' => null]);
         }
 
         Pendaftaran::firstOrCreate(

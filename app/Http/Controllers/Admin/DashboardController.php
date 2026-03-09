@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Alumni;
 use App\Models\Berita;
 use App\Models\Dosen;
 use App\Models\Galeri;
@@ -29,7 +28,7 @@ class DashboardController extends Controller
             'totalBerita' => Berita::count(),
             'totalPengumuman' => Pengumuman::count(),
             'totalGaleri' => Galeri::count(),
-            'totalAlumni' => Alumni::count(),
+            'totalPrestasiMahasiswa' => Mahasiswa::whereNotNull('prestasi')->where('prestasi', '!=', '')->count(),
         ];
 
         $aktivitasTerbaru = collect()

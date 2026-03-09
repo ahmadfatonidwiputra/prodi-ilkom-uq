@@ -25,5 +25,6 @@ class ProfilProdi extends Model
         'tentang',
         'visi',
         'misi',
+        'sertifikat_akreditasi',
     ];
 }

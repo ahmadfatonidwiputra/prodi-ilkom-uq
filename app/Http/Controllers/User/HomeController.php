@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\Alumni;
 use App\Models\Berita;
 use App\Models\Dosen;
 use App\Models\Fasilitas;
@@ -26,8 +25,10 @@ class HomeController extends Controller
 
         $statistik = [
             'dosen' => Dosen::count(),
-            'mahasiswa' => Schema::hasTable('mahasiswas') ? Mahasiswa::where('status_aktif', true)->count() : 0,
-            'alumni' => Schema::hasTable('alumnis') ? Alumni::count() : 0,
+            'mahasiswa_aktif' => Schema::hasTable('mahasiswas') ? Mahasiswa::where('status_aktif', true)->count() : 0,
+            'prestasi_mahasiswa' => Schema::hasTable('mahasiswas')
+                ? Mahasiswa::whereNotNull('prestasi')->where('prestasi', '!=', '')->count()
+                : 0,
             'fasilitas' => Schema::hasTable('fasilitas') ? Fasilitas::count() : 0,
         ];
 

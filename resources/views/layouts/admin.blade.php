@@ -150,8 +150,7 @@
             <a class="nav-link {{ request()->routeIs('admin.kurikulum.*') ? 'active' : '' }}" href="{{ route('admin.kurikulum.index') }}"><i class="bi bi-journal-text"></i> Kurikulum & Silabus</a>
             <a class="nav-link {{ request()->routeIs('admin.dosen.*') ? 'active' : '' }}" href="{{ route('admin.dosen.index') }}"><i class="bi bi-people"></i> Manajemen Dosen</a>
             <a class="nav-link {{ request()->routeIs('admin.fasilitas.*') ? 'active' : '' }}" href="{{ route('admin.fasilitas.index') }}"><i class="bi bi-building"></i> Fasilitas & Lab</a>
-            <a class="nav-link {{ request()->routeIs('admin.mahasiswa.*') ? 'active' : '' }}" href="{{ route('admin.mahasiswa.index') }}"><i class="bi bi-person-vcard"></i> Informasi Mahasiswa</a>
-            <a class="nav-link {{ request()->routeIs('admin.alumni.*') ? 'active' : '' }}" href="{{ route('admin.alumni.index') }}"><i class="bi bi-person-check"></i> Database Alumni</a>
+            <a class="nav-link {{ request()->routeIs('admin.mahasiswa.*') ? 'active' : '' }}" href="{{ route('admin.mahasiswa.index') }}"><i class="bi bi-trophy"></i> Prestasi Mahasiswa</a>
             <a class="nav-link {{ request()->routeIs('admin.pengumuman.*') || request()->routeIs('admin.berita.*') ? 'active' : '' }}" href="{{ route('admin.pengumuman.index') }}"><i class="bi bi-megaphone"></i> Pengumuman & Berita</a>
             <a class="nav-link {{ request()->routeIs('admin.galeri.*') ? 'active' : '' }}" href="{{ route('admin.galeri.index') }}"><i class="bi bi-images"></i> Galeri</a>
             <a class="nav-link {{ request()->routeIs('admin.pendaftaran.*') ? 'active' : '' }}" href="{{ route('admin.pendaftaran.index') }}"><i class="bi bi-inboxes"></i> Pendaftaran Masuk</a>

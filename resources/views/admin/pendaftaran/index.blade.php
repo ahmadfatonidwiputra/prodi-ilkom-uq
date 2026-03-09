@@ -1,7 +1,12 @@
 @extends('layouts.admin')
 @section('title', 'Pendaftaran Masuk')
 @section('content')
-<div class="d-flex justify-content-between align-items-center mb-3"><h2 class="h4 mb-0">Data Pendaftaran</h2></div>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="h4 mb-0">Data Pendaftaran</h2>
+    <a href="{{ route('admin.pendaftaran.export') }}" class="btn btn-success">
+        <i class="bi bi-download me-1"></i> Export CSV
+    </a>
+</div>
 @if (session('success')) <div class="alert alert-success">{{ session('success') }}</div> @endif
 <div class="card border-0 shadow-sm bg-white"><div class="table-responsive"><table class="table align-middle mb-0"><thead class="table-light"><tr><th>Nama</th><th>Email</th><th>No HP</th><th>Asal Sekolah</th><th>Status</th><th class="text-end">Aksi</th></tr></thead><tbody>
 @forelse($pendaftarans as $item)

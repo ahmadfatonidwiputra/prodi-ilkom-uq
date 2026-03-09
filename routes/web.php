@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Admin\AlumniController as AdminAlumniController;
 use App\Http\Controllers\Admin\BeritaController as AdminBeritaController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DosenController as AdminDosenController;
@@ -12,7 +11,6 @@ use App\Http\Controllers\Admin\PendaftaranController as AdminPendaftaranControll
 use App\Http\Controllers\Admin\PengumumanController as AdminPengumumanController;
 use App\Http\Controllers\Admin\ProfilController as AdminProfilController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\User\AlumniController as UserAlumniController;
 use App\Http\Controllers\User\BeritaController as UserBeritaController;
 use App\Http\Controllers\User\DosenController as UserDosenController;
 use App\Http\Controllers\User\FasilitasController as UserFasilitasController;
@@ -38,7 +36,6 @@ Route::get('/kontak', [UserHomeController::class, 'kontak'])->name('kontak');
 Route::get('/kurikulum', [UserKurikulumController::class, 'index'])->name('kurikulum');
 Route::get('/fasilitas', [UserFasilitasController::class, 'index'])->name('fasilitas');
 Route::get('/mahasiswa', [UserMahasiswaController::class, 'index'])->name('mahasiswa');
-Route::get('/alumni', [UserAlumniController::class, 'index'])->name('alumni');
 Route::get('/pendaftaran', [UserPendaftaranController::class, 'index'])->name('pendaftaran');
 Route::post('/pendaftaran', [UserPendaftaranController::class, 'store'])->name('pendaftaran.store');
 
@@ -57,7 +54,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::resource('/kurikulum', AdminKurikulumController::class)->parameters(['kurikulum' => 'kurikulum']);
     Route::resource('/fasilitas', AdminFasilitasController::class)->parameters(['fasilitas' => 'fasilitas']);
     Route::resource('/mahasiswa', AdminMahasiswaController::class)->parameters(['mahasiswa' => 'mahasiswa']);
-    Route::resource('/alumni', AdminAlumniController::class)->parameters(['alumni' => 'alumni']);
+    Route::get('/pendaftaran/export', [AdminPendaftaranController::class, 'export'])->name('pendaftaran.export');
     Route::resource('/pendaftaran', AdminPendaftaranController::class)->parameters(['pendaftaran' => 'pendaftaran']);
 
     Route::get('/profil', [AdminProfilController::class, 'edit'])->name('profil.edit');

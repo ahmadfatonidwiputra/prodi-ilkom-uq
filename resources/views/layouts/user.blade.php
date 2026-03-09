@@ -148,8 +148,7 @@
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('kurikulum') ? 'active' : '' }}" href="{{ route('kurikulum') }}">Kurikulum</a></li>
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('dosen') ? 'active' : '' }}" href="{{ route('dosen') }}">Dosen</a></li>
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('fasilitas') ? 'active' : '' }}" href="{{ route('fasilitas') }}">Fasilitas</a></li>
-                <li class="nav-item"><a class="nav-link {{ request()->routeIs('mahasiswa') ? 'active' : '' }}" href="{{ route('mahasiswa') }}">Mahasiswa</a></li>
-                <li class="nav-item"><a class="nav-link {{ request()->routeIs('alumni') ? 'active' : '' }}" href="{{ route('alumni') }}">Alumni</a></li>
+                <li class="nav-item"><a class="nav-link {{ request()->routeIs('mahasiswa') ? 'active' : '' }}" href="{{ route('mahasiswa') }}">Prestasi Mahasiswa</a></li>
                 <li class="nav-item"><a class="btn btn-daftar ms-lg-2 mt-2 mt-lg-0" href="{{ route('pendaftaran') }}">Pendaftaran</a></li>
             </ul>
         </div>

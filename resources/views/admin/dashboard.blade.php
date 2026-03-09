@@ -89,7 +89,7 @@
                 <div class="d-flex justify-content-between py-2 border-bottom border-secondary-subtle"><span>Total Berita</span><strong>{{ $metrics['totalBerita'] }}</strong></div>
                 <div class="d-flex justify-content-between py-2 border-bottom border-secondary-subtle"><span>Total Pengumuman</span><strong>{{ $metrics['totalPengumuman'] }}</strong></div>
                 <div class="d-flex justify-content-between py-2 border-bottom border-secondary-subtle"><span>Total Galeri</span><strong>{{ $metrics['totalGaleri'] }}</strong></div>
-                <div class="d-flex justify-content-between py-2"><span>Total Alumni</span><strong>{{ $metrics['totalAlumni'] }}</strong></div>
+                <div class="d-flex justify-content-between py-2"><span>Total Prestasi Mahasiswa</span><strong>{{ $metrics['totalPrestasiMahasiswa'] }}</strong></div>
             </div>
         </div>
     </div>

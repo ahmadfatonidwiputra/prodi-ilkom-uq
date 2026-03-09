@@ -37,7 +37,7 @@ class MahasiswaController extends Controller
 
         Mahasiswa::create($validated);
 
-        return redirect()->route('admin.mahasiswa.index')->with('success', 'Data mahasiswa berhasil ditambahkan.');
+        return redirect()->route('admin.mahasiswa.index')->with('success', 'Data prestasi mahasiswa berhasil ditambahkan.');
     }
 
     public function show(Mahasiswa $mahasiswa): RedirectResponse
@@ -65,13 +65,13 @@ class MahasiswaController extends Controller
 
         $mahasiswa->update($validated);
 
-        return redirect()->route('admin.mahasiswa.index')->with('success', 'Data mahasiswa berhasil diperbarui.');
+        return redirect()->route('admin.mahasiswa.index')->with('success', 'Data prestasi mahasiswa berhasil diperbarui.');
     }
 
     public function destroy(Mahasiswa $mahasiswa): RedirectResponse
     {
         $mahasiswa->delete();
 
-        return redirect()->route('admin.mahasiswa.index')->with('success', 'Data mahasiswa berhasil dihapus.');
+        return redirect()->route('admin.mahasiswa.index')->with('success', 'Data prestasi mahasiswa berhasil dihapus.');
     }
 }
