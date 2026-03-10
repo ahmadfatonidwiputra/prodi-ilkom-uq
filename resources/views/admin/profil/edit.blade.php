@@ -45,7 +45,7 @@
                 @if ($profil->sertifikat_akreditasi)
                     <div class="mt-3">
                         <p class="small text-muted mb-2">Gambar saat ini:</p>
-                        <img src="{{ asset('storage/' . $profil->sertifikat_akreditasi) }}" alt="Sertifikat Akreditasi" class="img-fluid rounded border" style="max-height: 260px;">
+                        <img src="{{ Storage::url($profil->sertifikat_akreditasi) }}" alt="Sertifikat Akreditasi" class="img-fluid rounded border" style="max-height: 260px;">
                     </div>
                 @endif
             </div>

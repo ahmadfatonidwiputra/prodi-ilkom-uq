@@ -9,7 +9,7 @@
         <div class="col-md-6 col-lg-4">
             <div class="card border-0 shadow-sm h-100">
                 @if ($dosen->foto)
-                    <img src="{{ asset('storage/' . $dosen->foto) }}" class="card-img-top" alt="{{ $dosen->nama }}" style="height: 260px; object-fit: cover;">
+                    <img src="{{ Storage::url($dosen->foto) }}" class="card-img-top" alt="{{ $dosen->nama }}" style="height: 260px; object-fit: cover;">
                 @endif
                 <div class="card-body">
                     <h2 class="h5 mb-1">{{ $dosen->nama }}</h2>

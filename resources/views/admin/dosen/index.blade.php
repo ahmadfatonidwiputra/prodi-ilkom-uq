@@ -39,7 +39,7 @@
                             <td class="text-center">{{ $dosens->firstItem() + $index }}</td>
                             <td>
                                 @if ($dosen->foto)
-                                    <img src="{{ asset('storage/' . $dosen->foto) }}" alt="{{ $dosen->nama }}" class="rounded" style="width: 56px; height: 56px; object-fit: cover;">
+                                    <img src="{{ Storage::url($dosen->foto) }}" alt="{{ $dosen->nama }}" class="rounded" style="width: 56px; height: 56px; object-fit: cover;">
                                 @else
                                     <div class="bg-light border rounded d-flex align-items-center justify-content-center text-muted" style="width: 56px; height: 56px;">
                                         -

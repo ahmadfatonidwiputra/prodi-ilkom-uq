@@ -59,7 +59,7 @@
                 <label for="foto" class="form-label">Foto Dosen</label>
                 @if ($dosen->foto)
                     <div class="mb-2">
-                        <img src="{{ asset('storage/' . $dosen->foto) }}" alt="{{ $dosen->nama }}" class="rounded border" style="width: 90px; height: 90px; object-fit: cover;">
+                        <img src="{{ Storage::url($dosen->foto) }}" alt="{{ $dosen->nama }}" class="rounded border" style="width: 90px; height: 90px; object-fit: cover;">
                     </div>
                 @endif
                 <input type="file" name="foto" id="foto" class="form-control @error('foto') is-invalid @enderror" accept=".jpg,.jpeg,.png,.webp">
