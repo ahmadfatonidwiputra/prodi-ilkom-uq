@@ -74,11 +74,11 @@ class ProfilController extends Controller
         );
 
         if ($hasSertifikatColumn && $request->hasFile('sertifikat_akreditasi')) {
-            if ($profil->sertifikat_akreditasi && Storage::disk('public')->exists($profil->sertifikat_akreditasi)) {
-                Storage::disk('public')->delete($profil->sertifikat_akreditasi);
+            if ($profil->sertifikat_akreditasi && Storage::disk('s3')->exists($profil->sertifikat_akreditasi)) {
+                Storage::disk('s3')->delete($profil->sertifikat_akreditasi);
             }
 
-            $validated['sertifikat_akreditasi'] = $request->file('sertifikat_akreditasi')->store('profil/sertifikat', 'public');
+            $validated['sertifikat_akreditasi'] = $request->file('sertifikat_akreditasi')->store('profil/sertifikat', 's3');
         } else {
             unset($validated['sertifikat_akreditasi']);
         }

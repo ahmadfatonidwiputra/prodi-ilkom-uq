@@ -35,7 +35,7 @@ class DosenController extends Controller
         $validated = $request->validated();
 
         if ($request->hasFile('foto')) {
-            $validated['foto'] = $request->file('foto')->store('dosens', 'public');
+            $validated['foto'] = $request->file('foto')->store('dosens', 's3');
         }
 
         Dosen::create($validated);
@@ -58,11 +58,11 @@ class DosenController extends Controller
         $validated = $request->validated();
 
         if ($request->hasFile('foto')) {
-            if ($dosen->foto && Storage::disk('public')->exists($dosen->foto)) {
-                Storage::disk('public')->delete($dosen->foto);
+            if ($dosen->foto && Storage::disk('s3')->exists($dosen->foto)) {
+                Storage::disk('s3')->delete($dosen->foto);
             }
 
-            $validated['foto'] = $request->file('foto')->store('dosens', 'public');
+            $validated['foto'] = $request->file('foto')->store('dosens', 's3');
         } else {
             unset($validated['foto']);
         }
@@ -74,8 +74,8 @@ class DosenController extends Controller
 
     public function destroy(Dosen $dosen): RedirectResponse
     {
-        if ($dosen->foto && Storage::disk('public')->exists($dosen->foto)) {
-            Storage::disk('public')->delete($dosen->foto);
+        if ($dosen->foto && Storage::disk('s3')->exists($dosen->foto)) {
+            Storage::disk('s3')->delete($dosen->foto);
         }
 
         $dosen->delete();
