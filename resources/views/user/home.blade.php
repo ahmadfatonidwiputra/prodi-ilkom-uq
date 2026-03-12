@@ -38,7 +38,7 @@
 @if ($fasilitasSlides->isNotEmpty())
     <div class="glass-card p-4 mb-4">
         <h3 class="fw-bold mb-3">Fasilitas</h3>
-        <div id="fasilitasCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div id="fasilitasCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
             <div class="carousel-indicators">
                 @foreach ($fasilitasSlides as $slide)
                     <button type="button" data-bs-target="#fasilitasCarousel" data-bs-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}" @if ($loop->first) aria-current="true" @endif aria-label="Slide {{ $loop->iteration }}"></button>
@@ -52,8 +52,9 @@
                         <div class="carousel-caption text-start p-3 p-md-4 rounded-3" style="background: rgba(13, 27, 45, 0.62);">
                             <h5 class="fw-bold mb-1">{{ $slide['title'] }}</h5>
                             @if (!empty($slide['body']))
-                                <p class="mb-0">{{ \Illuminate\Support\Str::limit(strip_tags($slide['body']), 120) }}</p>
+                                <p class="mb-3">{{ \Illuminate\Support\Str::limit(strip_tags($slide['body']), 120) }}</p>
                             @endif
+                            <a href="{{ $slide['detail_url'] }}" class="btn btn-sm btn-light fw-semibold">Lihat Detail</a>
                         </div>
                     </div>
                 @endforeach
@@ -76,7 +77,10 @@
 <div class="row g-4">
     <div class="col-12">
         <div class="glass-card p-4 h-100">
-            <h4 class="fw-bold mb-3">Dosen Unggulan</h4>
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+                <h4 class="fw-bold mb-0">Dosen Unggulan</h4>
+                <a href="{{ route('dosen') }}" class="btn btn-sm btn-outline-primary">Lihat Semua Dosen</a>
+            </div>
             @forelse ($dosenUnggulan as $dosen)
                 <div class="d-flex align-items-center gap-3 py-2 border-bottom">
                     <div class="rounded-circle bg-primary-subtle text-primary d-inline-flex align-items-center justify-content-center" style="width: 44px; height: 44px;">

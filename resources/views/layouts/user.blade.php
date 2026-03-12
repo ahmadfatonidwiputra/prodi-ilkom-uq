@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Prodi D4 Teknologi Rekayasa Perangkat Lunak UNBIM')</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="icon" type="image/png" sizes="64x64" href="{{ asset('images/unbim-favicon.png') }}">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
@@ -31,15 +33,17 @@
         }
 
         .brand-mark {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, var(--uq-purple), #bb7cff);
+            width: 52px;
+            height: 52px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            color: #fff;
-            font-weight: 700;
+        }
+
+        .brand-mark img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         .nav-link {
@@ -135,7 +139,7 @@
 <nav class="navbar navbar-expand-lg top-nav sticky-top py-3">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center gap-2" href="{{ route('home') }}">
-            <span class="brand-mark"><i class="bi bi-mortarboard"></i></span>
+            <span class="brand-mark"><img src="{{ asset('images/unbim-icon.png') }}" alt="Logo UNBIM"></span>
             <span class="fw-bold fs-4" style="color: var(--uq-purple-deep);">UNBIM <span class="text-dark fs-5">D4 TRPL</span></span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navUser" aria-controls="navUser" aria-expanded="false" aria-label="Toggle navigation">

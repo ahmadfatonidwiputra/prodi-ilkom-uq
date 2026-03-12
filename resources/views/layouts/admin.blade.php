@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Admin Prodi D4 Teknologi Rekayasa Perangkat Lunak')</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="icon" type="image/png" sizes="64x64" href="{{ asset('images/unbim-favicon.png') }}">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
@@ -48,14 +50,17 @@
         }
 
         .sidebar .brand-logo {
-            width: 46px;
-            height: 46px;
-            border-radius: 12px;
-            background: linear-gradient(145deg, #8b3dff, #bb7cff);
+            width: 48px;
+            height: 48px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            color: #fff;
+        }
+
+        .sidebar .brand-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         .menu-title {
@@ -190,7 +195,7 @@
 <div class="d-flex admin-shell">
     <aside class="sidebar p-3 p-lg-4 d-flex flex-column">
         <a href="{{ route('admin.dashboard') }}" class="brand mb-4">
-            <span class="brand-logo"><i class="bi bi-shield-check"></i></span>
+            <span class="brand-logo"><img src="{{ asset('images/unbim-icon.png') }}" alt="Logo UNBIM"></span>
             <span>UNBIM TRPL Admin</span>
         </a>
 

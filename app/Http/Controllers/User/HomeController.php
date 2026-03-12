@@ -23,11 +23,11 @@ class HomeController extends Controller
 
         if (Schema::hasTable('site_contents')) {
             $fasilitasKeys = [
-                ['key' => 'fasilitas_lab_pemrograman', 'title' => 'Lab Pemrograman'],
-                ['key' => 'fasilitas_lab_jaringan_komputer', 'title' => 'Lab Jaringan Komputer'],
-                ['key' => 'fasilitas_ruang_kelas', 'title' => 'Ruang Kelas'],
-                ['key' => 'fasilitas_perpustakaan', 'title' => 'Perpustakaan'],
-                ['key' => 'fasilitas_coding_learn', 'title' => 'Coding Learn'],
+                ['key' => 'fasilitas_lab_pemrograman', 'title' => 'Lab Pemrograman', 'route' => 'fasilitas.lab-pemrograman'],
+                ['key' => 'fasilitas_lab_jaringan_komputer', 'title' => 'Lab Jaringan Komputer', 'route' => 'fasilitas.lab-jaringan-komputer'],
+                ['key' => 'fasilitas_ruang_kelas', 'title' => 'Ruang Kelas', 'route' => 'fasilitas.ruang-kelas'],
+                ['key' => 'fasilitas_perpustakaan', 'title' => 'Perpustakaan', 'route' => 'fasilitas.perpustakaan'],
+                ['key' => 'fasilitas_coding_learn', 'title' => 'Coding Learn', 'route' => 'fasilitas.coding-learn'],
             ];
 
             $contentByKey = SiteContent::query()
@@ -43,6 +43,7 @@ class HomeController extends Controller
                         'title' => $content?->title ?: $item['title'],
                         'body' => $content?->body,
                         'image_url' => $content?->image_url,
+                        'detail_url' => route($item['route']),
                     ];
                 })
                 ->filter(fn (array $slide): bool => ! empty($slide['image_url']))
