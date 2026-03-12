@@ -27,6 +27,7 @@ class StoreDosenRequest extends FormRequest
             'nidn' => ['required', 'string', 'max:50', 'unique:dosens,nidn'],
             'jabatan' => ['required', 'string', 'max:255'],
             'jabatan_fungsional' => ['required', 'string', Rule::in(['Asisten Ahli', 'Lektor', 'Lektor Kepala', 'Guru Besar'])],
+            'bidang_keahlian' => ['required', 'string', 'max:255'],
             'foto' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
         ];
     }

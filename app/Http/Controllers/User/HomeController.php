@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Berita;
 use App\Models\Dosen;
 use App\Models\Fasilitas;
-use App\Models\Mahasiswa;
+use App\Models\Pendaftaran;
+use App\Models\PrestasiMahasiswa;
 use App\Models\ProfilProdi;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\View\View;
@@ -25,9 +26,11 @@ class HomeController extends Controller
 
         $statistik = [
             'dosen' => Dosen::count(),
-            'mahasiswa_aktif' => Schema::hasTable('mahasiswas') ? Mahasiswa::where('status_aktif', true)->count() : 0,
-            'prestasi_mahasiswa' => Schema::hasTable('mahasiswas')
-                ? Mahasiswa::whereNotNull('prestasi')->where('prestasi', '!=', '')->count()
+            'mahasiswa_aktif' => Schema::hasTable('pendaftarans')
+                ? Pendaftaran::where('status', 'diterima')->count()
+                : 0,
+            'prestasi_mahasiswa' => Schema::hasTable('prestasi_mahasiswas')
+                ? PrestasiMahasiswa::count()
                 : 0,
             'fasilitas' => Schema::hasTable('fasilitas') ? Fasilitas::count() : 0,
         ];

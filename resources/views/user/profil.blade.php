@@ -31,7 +31,7 @@
         @if (!empty($profil?->sertifikat_akreditasi))
             <div class="row g-3 align-items-center">
                 <div class="col-lg-8">
-                    <img src="{{ Storage::url($profil->sertifikat_akreditasi) }}" alt="Sertifikat Akreditasi Prodi" class="img-fluid rounded border">
+                    <img src="{{ Storage::disk('s3')->url($profil->sertifikat_akreditasi) }}" alt="Sertifikat Akreditasi Prodi" class="img-fluid rounded border">
                 </div>
                 <div class="col-lg-4">
                     <div class="alert alert-success mb-0">

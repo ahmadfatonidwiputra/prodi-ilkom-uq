@@ -56,10 +56,18 @@
             </div>
 
             <div class="mb-3">
+                <label for="bidang_keahlian" class="form-label">Bidang Keahlian</label>
+                <input type="text" name="bidang_keahlian" id="bidang_keahlian" class="form-control @error('bidang_keahlian') is-invalid @enderror" value="{{ old('bidang_keahlian', $dosen->bidang_keahlian) }}" required>
+                @error('bidang_keahlian')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
                 <label for="foto" class="form-label">Foto Dosen</label>
                 @if ($dosen->foto)
                     <div class="mb-2">
-                        <img src="{{ Storage::url($dosen->foto) }}" alt="{{ $dosen->nama }}" class="rounded border" style="width: 90px; height: 90px; object-fit: cover;">
+                        <img src="{{ $dosen->foto_url }}" alt="{{ $dosen->nama }}" class="rounded border" style="width: 90px; height: 90px; object-fit: cover;">
                     </div>
                 @endif
                 <input type="file" name="foto" id="foto" class="form-control @error('foto') is-invalid @enderror" accept=".jpg,.jpeg,.png,.webp">

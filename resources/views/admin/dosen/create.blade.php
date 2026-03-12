@@ -55,6 +55,14 @@
             </div>
 
             <div class="mb-3">
+                <label for="bidang_keahlian" class="form-label">Bidang Keahlian</label>
+                <input type="text" name="bidang_keahlian" id="bidang_keahlian" class="form-control @error('bidang_keahlian') is-invalid @enderror" value="{{ old('bidang_keahlian') }}" required>
+                @error('bidang_keahlian')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
                 <label for="foto" class="form-label">Foto Dosen</label>
                 <input type="file" name="foto" id="foto" class="form-control @error('foto') is-invalid @enderror" accept=".jpg,.jpeg,.png,.webp">
                 <div class="form-text">Format: JPG, JPEG, PNG, WEBP. Maksimal 2MB.</div>

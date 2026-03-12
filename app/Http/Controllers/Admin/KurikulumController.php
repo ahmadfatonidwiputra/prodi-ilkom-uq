@@ -51,7 +51,7 @@ class KurikulumController extends Controller
     public function update(Request $request, Kurikulum $kurikulum): RedirectResponse
     {
         $validated = $request->validate([
-            'kode_mk' => ['required', 'string', 'max:30', 'unique:kurikulums,kode_mk,' . $kurikulum->id],
+            'kode_mk' => ['required', 'string', 'max:30', 'unique:kurikulums,kode_mk,'.$kurikulum->id],
             'nama_mk' => ['required', 'string', 'max:255'],
             'semester' => ['required', 'integer', 'between:1,14'],
             'sks' => ['required', 'integer', 'between:1,8'],

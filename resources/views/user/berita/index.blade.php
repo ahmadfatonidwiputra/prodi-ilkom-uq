@@ -8,8 +8,8 @@
     @forelse ($beritas as $berita)
         <div class="col-md-6 col-lg-4">
             <div class="card border-0 shadow-sm h-100">
-                @if ($berita->gambar)
-                    <img src="{{ $berita->gambar }}" class="card-img-top" alt="{{ $berita->judul }}" style="height: 200px; object-fit: cover;">
+                @if ($berita->gambar_url)
+                    <img src="{{ $berita->gambar_url }}" class="card-img-top" alt="{{ $berita->judul }}" style="height: 200px; object-fit: cover;">
                 @endif
                 <div class="card-body d-flex flex-column">
                     <small class="text-muted mb-2">{{ $berita->created_at?->format('d-m-Y') }}</small>

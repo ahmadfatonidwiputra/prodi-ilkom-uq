@@ -13,12 +13,12 @@ class AdminSeeder extends Seeder
         DB::table('users')->updateOrInsert(
             ['email' => 'admin@unbim.ac.id'],
             [
-                'name'              => 'admin',
-                'email'             => 'admin@unbim.ac.id',
-                'password'          => Hash::make('admin123'),
+                'name' => 'admin',
+                'email' => 'admin@unbim.ac.id',
+                'password' => Hash::make('admin123'),
                 'email_verified_at' => now(),
-                'created_at'        => now(),
-                'updated_at'        => now(),
+                'created_at' => now(),
+                'updated_at' => now(),
             ]
         );
     }

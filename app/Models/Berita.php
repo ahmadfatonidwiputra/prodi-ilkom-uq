@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class Berita extends Model
@@ -21,6 +22,19 @@ class Berita extends Model
         'isi',
         'gambar',
     ];
+
+    public function getGambarUrlAttribute(): ?string
+    {
+        if (! $this->gambar) {
+            return null;
+        }
+
+        if (str_starts_with($this->gambar, 'http://') || str_starts_with($this->gambar, 'https://')) {
+            return $this->gambar;
+        }
+
+        return Storage::disk('s3')->url($this->gambar);
+    }
 
     protected static function booted(): void
     {
@@ -47,7 +61,7 @@ class Berita extends Model
             ->where('slug', $slug)
             ->exists()
         ) {
-            $slug = $baseSlug . '-' . $counter;
+            $slug = $baseSlug.'-'.$counter;
             $counter++;
         }
 

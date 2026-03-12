@@ -30,6 +30,7 @@
                         <th>NIDN</th>
                         <th>Jabatan</th>
                         <th>Jabatan Fungsional</th>
+                        <th>Bidang Keahlian</th>
                         <th class="text-center" style="width: 170px;">Aksi</th>
                     </tr>
                 </thead>
@@ -39,7 +40,7 @@
                             <td class="text-center">{{ $dosens->firstItem() + $index }}</td>
                             <td>
                                 @if ($dosen->foto)
-                                    <img src="{{ Storage::url($dosen->foto) }}" alt="{{ $dosen->nama }}" class="rounded" style="width: 56px; height: 56px; object-fit: cover;">
+                                    <img src="{{ $dosen->foto_url }}" alt="{{ $dosen->nama }}" class="rounded" style="width: 56px; height: 56px; object-fit: cover;">
                                 @else
                                     <div class="bg-light border rounded d-flex align-items-center justify-content-center text-muted" style="width: 56px; height: 56px;">
                                         -
@@ -50,6 +51,7 @@
                             <td>{{ $dosen->nidn }}</td>
                             <td>{{ $dosen->jabatan }}</td>
                             <td>{{ $dosen->jabatan_fungsional }}</td>
+                            <td>{{ $dosen->bidang_keahlian }}</td>
                             <td class="text-center">
                                 <a href="{{ route('admin.dosen.edit', $dosen) }}" class="btn btn-sm btn-warning me-1">Edit</a>
                                 <form action="{{ route('admin.dosen.destroy', $dosen) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin hapus data dosen ini?');">
@@ -61,7 +63,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="7" class="text-center py-4 text-muted">Data dosen belum tersedia.</td>
+                            <td colspan="8" class="text-center py-4 text-muted">Data dosen belum tersedia.</td>
                         </tr>
                     @endforelse
                 </tbody>

@@ -13,7 +13,7 @@
         <div class="panel-card p-3 h-100 d-flex align-items-center gap-3">
             <span class="metric-icon"><i class="bi bi-people"></i></span>
             <div>
-                <div class="small text-secondary">Total Mahasiswa Aktif</div>
+                <div class="small text-secondary">Total Prestasi Mahasiswa</div>
                 <div class="h4 fw-bold mb-0">{{ $metrics['totalMahasiswaAktif'] }}</div>
             </div>
         </div>
@@ -40,7 +40,7 @@
         <div class="panel-card p-3 h-100 d-flex align-items-center gap-3">
             <span class="metric-icon"><i class="bi bi-clipboard-check"></i></span>
             <div>
-                <div class="small text-secondary">Permintaan Update Profil</div>
+                <div class="small text-secondary">Pendaftaran Pending</div>
                 <div class="h4 fw-bold mb-0">{{ $metrics['permintaanUpdateProfil'] }}</div>
             </div>
         </div>
@@ -77,7 +77,7 @@
             <div class="row g-2">
                 <div class="col-6"><a href="{{ route('admin.berita.create') }}" class="btn btn-quick w-100"><i class="bi bi-newspaper me-1"></i> Buat Berita Baru</a></div>
                 <div class="col-6"><a href="{{ route('admin.kurikulum.index') }}" class="btn btn-quick w-100"><i class="bi bi-journal-text me-1"></i> Update Kurikulum</a></div>
-                <div class="col-6"><a href="{{ route('admin.profil.edit') }}" class="btn btn-quick w-100"><i class="bi bi-pencil-square me-1"></i> Edit Halaman Beranda</a></div>
+                <div class="col-6"><a href="{{ route('admin.site-content.edit', 'tentang-profil-program-studi') }}" class="btn btn-quick w-100"><i class="bi bi-pencil-square me-1"></i> Edit Profil Prodi</a></div>
                 <div class="col-6"><a href="{{ route('admin.pengumuman.create') }}" class="btn btn-quick w-100"><i class="bi bi-megaphone me-1"></i> Kirim Pengumuman</a></div>
             </div>
         </div>

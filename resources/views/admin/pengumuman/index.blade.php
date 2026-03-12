@@ -28,6 +28,7 @@
                         <th>Judul</th>
                         <th>Slug</th>
                         <th>Tanggal</th>
+                        <th>File</th>
                         <th style="width: 170px;" class="text-center">Aksi</th>
                     </tr>
                 </thead>
@@ -37,7 +38,14 @@
                             <td class="text-center">{{ $pengumumans->firstItem() + $index }}</td>
                             <td>{{ $pengumuman->judul }}</td>
                             <td><code>{{ $pengumuman->slug }}</code></td>
-                            <td>{{ $pengumuman->tanggal?->format('d-m-Y') }}</td>
+                            <td>{{ $pengumuman->tanggal ? \Illuminate\Support\Carbon::parse($pengumuman->tanggal)->format('d-m-Y') : '-' }}</td>
+                            <td>
+                                @if ($pengumuman->file_url)
+                                    <a href="{{ $pengumuman->file_url }}" target="_blank" class="btn btn-sm btn-outline-primary">Lihat PDF</a>
+                                @else
+                                    <span class="text-muted">-</span>
+                                @endif
+                            </td>
                             <td class="text-center">
                                 <a href="{{ route('admin.pengumuman.edit', $pengumuman) }}" class="btn btn-sm btn-warning me-1">Edit</a>
                                 <form action="{{ route('admin.pengumuman.destroy', $pengumuman) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin hapus pengumuman ini?');">
@@ -49,7 +57,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="text-center py-4 text-muted">Belum ada data pengumuman.</td>
+                            <td colspan="6" class="text-center py-4 text-muted">Belum ada data pengumuman.</td>
                         </tr>
                     @endforelse
                 </tbody>

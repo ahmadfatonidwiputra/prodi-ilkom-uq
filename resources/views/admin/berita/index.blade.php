@@ -10,10 +10,17 @@
 @if (session('success')) <div class="alert alert-success">{{ session('success') }}</div> @endif
 <div class="card border-0 shadow-sm"><div class="card-body p-0"><div class="table-responsive">
 <table class="table table-hover mb-0 align-middle">
-    <thead class="table-primary"><tr><th>Judul</th><th>Slug</th><th>Tanggal</th><th class="text-center">Aksi</th></tr></thead>
+    <thead class="table-primary"><tr><th>Gambar</th><th>Judul</th><th>Slug</th><th>Tanggal</th><th class="text-center">Aksi</th></tr></thead>
     <tbody>
     @forelse($beritas as $berita)
         <tr>
+            <td>
+                @if($berita->gambar_url)
+                    <img src="{{ $berita->gambar_url }}" alt="{{ $berita->judul }}" class="rounded border" style="width: 90px; height: 56px; object-fit: cover;">
+                @else
+                    <span class="text-muted small">-</span>
+                @endif
+            </td>
             <td>{{ $berita->judul }}</td>
             <td><code>{{ $berita->slug }}</code></td>
             <td>{{ $berita->created_at?->format('d-m-Y') }}</td>
@@ -26,7 +33,7 @@
             </td>
         </tr>
     @empty
-        <tr><td colspan="4" class="text-center py-4">Belum ada berita.</td></tr>
+        <tr><td colspan="5" class="text-center py-4">Belum ada berita.</td></tr>
     @endforelse
     </tbody>
 </table>

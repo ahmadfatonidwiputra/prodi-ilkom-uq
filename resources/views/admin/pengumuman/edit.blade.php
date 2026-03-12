@@ -13,7 +13,7 @@
 
 <div class="card border-0 shadow-sm">
     <div class="card-body">
-        <form action="{{ route('admin.pengumuman.update', $pengumuman) }}" method="POST">
+        <form action="{{ route('admin.pengumuman.update', $pengumuman) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -27,7 +27,7 @@
 
             <div class="mb-3">
                 <label for="tanggal" class="form-label">Tanggal</label>
-                <input type="date" name="tanggal" id="tanggal" class="form-control @error('tanggal') is-invalid @enderror" value="{{ old('tanggal', $pengumuman->tanggal?->format('Y-m-d')) }}" required>
+                <input type="date" name="tanggal" id="tanggal" class="form-control @error('tanggal') is-invalid @enderror" value="{{ old('tanggal', $pengumuman->tanggal ? \Illuminate\Support\Carbon::parse($pengumuman->tanggal)->format('Y-m-d') : '') }}" required>
                 @error('tanggal')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -37,6 +37,20 @@
                 <label for="isi" class="form-label">Isi Pengumuman</label>
                 <textarea name="isi" id="isi" rows="6" class="form-control @error('isi') is-invalid @enderror" required>{{ old('isi', $pengumuman->isi) }}</textarea>
                 @error('isi')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label for="file_path" class="form-label">File Pengumuman (PDF, opsional)</label>
+                @if ($pengumuman->file_url)
+                    <div class="mb-2">
+                        <a href="{{ $pengumuman->file_url }}" target="_blank" class="btn btn-sm btn-outline-primary">Lihat File Saat Ini</a>
+                    </div>
+                @endif
+                <input type="file" name="file_path" id="file_path" class="form-control @error('file_path') is-invalid @enderror" accept=".pdf">
+                <div class="form-text">Kosongkan jika tidak mengganti file.</div>
+                @error('file_path')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class Pengumuman extends Model
@@ -26,8 +27,22 @@ class Pengumuman extends Model
         'judul',
         'slug',
         'isi',
+        'file_path',
         'tanggal',
     ];
+
+    public function getFileUrlAttribute(): ?string
+    {
+        if (! $this->file_path) {
+            return null;
+        }
+
+        if (str_starts_with($this->file_path, 'http://') || str_starts_with($this->file_path, 'https://')) {
+            return $this->file_path;
+        }
+
+        return Storage::disk('s3')->url($this->file_path);
+    }
 
     /**
      * Get the attributes that should be cast.
@@ -71,7 +86,7 @@ class Pengumuman extends Model
             ->where('slug', $slug)
             ->exists()
         ) {
-            $slug = $baseSlug . '-' . $counter;
+            $slug = $baseSlug.'-'.$counter;
             $counter++;
         }
 

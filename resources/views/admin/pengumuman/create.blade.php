@@ -13,7 +13,7 @@
 
 <div class="card border-0 shadow-sm">
     <div class="card-body">
-        <form action="{{ route('admin.pengumuman.store') }}" method="POST">
+        <form action="{{ route('admin.pengumuman.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="mb-3">
@@ -36,6 +36,14 @@
                 <label for="isi" class="form-label">Isi Pengumuman</label>
                 <textarea name="isi" id="isi" rows="6" class="form-control @error('isi') is-invalid @enderror" required>{{ old('isi') }}</textarea>
                 @error('isi')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label for="file_path" class="form-label">File Pengumuman (PDF, opsional)</label>
+                <input type="file" name="file_path" id="file_path" class="form-control @error('file_path') is-invalid @enderror" accept=".pdf">
+                @error('file_path')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>

@@ -144,11 +144,65 @@
         <div class="collapse navbar-collapse" id="navUser">
             <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">Beranda</a></li>
-                <li class="nav-item"><a class="nav-link {{ request()->routeIs('profil') ? 'active' : '' }}" href="{{ route('profil') }}">Tentang Prodi</a></li>
-                <li class="nav-item"><a class="nav-link {{ request()->routeIs('kurikulum') ? 'active' : '' }}" href="{{ route('kurikulum') }}">Kurikulum</a></li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle {{ request()->routeIs('tentang-prodi.*') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Tentang Prodi
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ route('tentang-prodi.profil-program-studi') }}">Profil Program Studi</a></li>
+                        <li><a class="dropdown-item" href="{{ route('tentang-prodi.visi-misi') }}">Visi Misi</a></li>
+                        <li><a class="dropdown-item" href="{{ route('tentang-prodi.profil-lulusan') }}">Profil Lulusan</a></li>
+                        <li><a class="dropdown-item" href="{{ route('tentang-prodi.profesi-profil-lulusan') }}">Profesi Profil Lulusan</a></li>
+                        <li><a class="dropdown-item" href="{{ route('tentang-prodi.struktur-organisasi') }}">Struktur Organisasi</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle {{ request()->routeIs('kurikulum.*') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Kurikulum
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ route('kurikulum.matakuliah') }}">Matakuliah</a></li>
+                        <li><a class="dropdown-item" href="{{ route('kurikulum.rps') }}">RPS</a></li>
+                        <li><a class="dropdown-item" href="{{ route('kurikulum.jadwal-kuliah') }}">Jadwal Kuliah</a></li>
+                    </ul>
+                </li>
+
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('dosen') ? 'active' : '' }}" href="{{ route('dosen') }}">Dosen</a></li>
-                <li class="nav-item"><a class="nav-link {{ request()->routeIs('fasilitas') ? 'active' : '' }}" href="{{ route('fasilitas') }}">Fasilitas</a></li>
-                <li class="nav-item"><a class="nav-link {{ request()->routeIs('mahasiswa') ? 'active' : '' }}" href="{{ route('mahasiswa') }}">Prestasi Mahasiswa</a></li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle {{ request()->routeIs('fasilitas.*') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Fasilitas
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ route('fasilitas.lab-pemrograman') }}">Lab Pemrograman</a></li>
+                        <li><a class="dropdown-item" href="{{ route('fasilitas.lab-jaringan-komputer') }}">Lab Jaringan Komputer</a></li>
+                        <li><a class="dropdown-item" href="{{ route('fasilitas.ruang-kelas') }}">Ruang Kelas</a></li>
+                        <li><a class="dropdown-item" href="{{ route('fasilitas.perpustakaan') }}">Perpustakaan</a></li>
+                        <li><a class="dropdown-item" href="{{ route('fasilitas.coding-learn') }}">Coding Learn</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item"><a class="nav-link {{ request()->routeIs('prestasi-mahasiswa') ? 'active' : '' }}" href="{{ route('prestasi-mahasiswa') }}">Prestasi Mahasiswa</a></li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle {{ request()->routeIs('hmps.*') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        HMPS
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ route('hmps.profil') }}">Profil HMPS</a></li>
+                        <li><a class="dropdown-item" href="{{ route('hmps.struktur-organisasi') }}">Struktur Organisasi</a></li>
+                        <li><a class="dropdown-item" href="{{ route('hmps.program-kerja') }}">Program Kerja</a></li>
+                        <li><a class="dropdown-item" href="{{ route('hmps.kegiatan') }}">Kegiatan</a></li>
+                        <li><a class="dropdown-item" href="{{ route('hmps.rekruitment') }}">Rekruitment</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item"><a class="nav-link {{ request()->routeIs('pengumuman*') ? 'active' : '' }}" href="{{ route('pengumuman') }}">Pengumuman</a></li>
+                <li class="nav-item"><a class="nav-link {{ request()->routeIs('berita*') ? 'active' : '' }}" href="{{ route('berita') }}">Berita</a></li>
+                <li class="nav-item"><a class="nav-link {{ request()->routeIs('galeri') ? 'active' : '' }}" href="{{ route('galeri') }}">Galeri</a></li>
+                <li class="nav-item"><a class="nav-link {{ request()->routeIs('kontak') ? 'active' : '' }}" href="{{ route('kontak') }}">Kontak</a></li>
                 <li class="nav-item"><a class="btn btn-daftar ms-lg-2 mt-2 mt-lg-0" href="{{ route('pendaftaran') }}">Pendaftaran</a></li>
             </ul>
         </div>
@@ -164,8 +218,8 @@
                     <h1 class="display-4 fw-bold mb-3">Program Studi D4 Teknologi Rekayasa Perangkat Lunak UNBIM</h1>
                     <p class="fs-4 mb-4">Mencetak lulusan unggul dan kompeten di bidang teknologi terapan, software engineering, dan inovasi digital.</p>
                     <div class="d-flex flex-wrap gap-2">
-                        <a href="{{ route('profil') }}" class="btn btn-daftar">Pelajari Lebih Lanjut</a>
-                        <a href="{{ route('visi-misi') }}" class="btn btn-outline-light rounded-3 px-4">Visi &amp; Misi</a>
+                        <a href="{{ route('tentang-prodi.profil-program-studi') }}" class="btn btn-daftar">Pelajari Lebih Lanjut</a>
+                        <a href="{{ route('tentang-prodi.visi-misi') }}" class="btn btn-outline-light rounded-3 px-4">Visi &amp; Misi</a>
                     </div>
                 </div>
             </div>

@@ -43,7 +43,7 @@
                     <strong>{{ $statistik['prestasi_mahasiswa'] }}</strong>
                 </div>
                 <div class="d-flex justify-content-between align-items-center border-bottom pb-2">
-                    <span>Mahasiswa Aktif</span>
+                    <span>Mahasiswa Diterima</span>
                     <strong>{{ $statistik['mahasiswa_aktif'] }}</strong>
                 </div>
                 <div class="d-flex justify-content-between align-items-center">

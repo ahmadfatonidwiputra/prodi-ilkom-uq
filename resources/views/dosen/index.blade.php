@@ -9,13 +9,14 @@
         <div class="col-md-6 col-lg-4">
             <div class="card border-0 shadow-sm h-100">
                 @if ($dosen->foto)
-                    <img src="{{ Storage::url($dosen->foto) }}" class="card-img-top" alt="{{ $dosen->nama }}" style="height: 260px; object-fit: cover;">
+                    <img src="{{ $dosen->foto_url }}" class="card-img-top" alt="{{ $dosen->nama }}" style="height: 260px; object-fit: cover;">
                 @endif
                 <div class="card-body">
                     <h2 class="h5 mb-1">{{ $dosen->nama }}</h2>
                     <p class="text-muted mb-1">NIDN: {{ $dosen->nidn }}</p>
                     <p class="mb-1">{{ $dosen->jabatan }}</p>
                     <p class="mb-0 text-primary fw-semibold">{{ $dosen->jabatan_fungsional }}</p>
+                    <small class="text-muted">Bidang keahlian: {{ $dosen->bidang_keahlian }}</small>
                 </div>
             </div>
         </div>

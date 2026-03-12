@@ -54,7 +54,7 @@ class MahasiswaController extends Controller
     {
         $validated = $request->validate([
             'nama' => ['required', 'string', 'max:255'],
-            'nim' => ['required', 'string', 'max:30', 'unique:mahasiswas,nim,' . $mahasiswa->id],
+            'nim' => ['required', 'string', 'max:30', 'unique:mahasiswas,nim,'.$mahasiswa->id],
             'angkatan' => ['required', 'integer', 'digits:4'],
             'konsentrasi' => ['nullable', 'string', 'max:255'],
             'prestasi' => ['nullable', 'string', 'max:255'],

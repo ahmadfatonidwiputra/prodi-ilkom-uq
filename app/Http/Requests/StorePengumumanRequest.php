@@ -24,6 +24,7 @@ class StorePengumumanRequest extends FormRequest
         return [
             'judul' => ['required', 'string', 'max:255'],
             'isi' => ['required', 'string'],
+            'file_path' => ['nullable', 'file', 'mimes:pdf', 'max:10240'],
             'tanggal' => ['required', 'date'],
         ];
     }

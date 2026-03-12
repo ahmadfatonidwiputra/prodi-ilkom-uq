@@ -5,7 +5,7 @@
 @section('content')
 <h1 class="h3 mb-4">Tambah Berita</h1>
 <div class="card border-0 shadow-sm"><div class="card-body">
-<form action="{{ route('admin.berita.store') }}" method="POST">
+<form action="{{ route('admin.berita.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="mb-3">
         <label class="form-label">Judul</label>
@@ -18,8 +18,9 @@
         @error('isi') <div class="invalid-feedback">{{ $message }}</div> @enderror
     </div>
     <div class="mb-3">
-        <label class="form-label">URL Gambar (opsional)</label>
-        <input type="text" name="gambar" class="form-control @error('gambar') is-invalid @enderror" value="{{ old('gambar') }}">
+        <label class="form-label">Gambar (opsional)</label>
+        <input type="file" name="gambar" class="form-control @error('gambar') is-invalid @enderror" accept=".jpg,.jpeg,.png,.webp">
+        <div class="form-text">Format: JPG, JPEG, PNG, WEBP. Maksimal 4MB.</div>
         @error('gambar') <div class="invalid-feedback">{{ $message }}</div> @enderror
     </div>
     <button class="btn btn-primary">Simpan</button>
