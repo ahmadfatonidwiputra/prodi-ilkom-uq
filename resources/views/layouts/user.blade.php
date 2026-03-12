@@ -212,7 +212,7 @@
                 <div class="col-lg-7">
                     <p class="text-uppercase fw-semibold mb-2">Selamat Datang di</p>
                     <h1 class="display-4 fw-bold mb-3">Program Studi D4 Teknologi Rekayasa Perangkat Lunak UNBIM</h1>
-                    <p class="fs-4 mb-4">Mencetak lulusan unggul dan kompeten di bidang teknologi terapan, software engineering, dan inovasi digital.</p>
+                    <p class="fs-4 mb-4">Menjadi Program Studi Teknologi Rekayasa Perangkat Lunak yang unggul, inovatif, dan berdaya saing global dalam menghasilkan pengembang perangkat lunak dan teknologi kesehatan berbasis health technopreneurship.</p>
                     <div class="d-flex flex-wrap gap-2">
                         <a href="{{ route('tentang-prodi.profil-program-studi') }}" class="btn btn-daftar">Pelajari Lebih Lanjut</a>
                         <a href="{{ route('tentang-prodi.visi-misi') }}" class="btn btn-outline-light rounded-3 px-4">Visi &amp; Misi</a>

@@ -3,26 +3,6 @@
 @section('title', 'Beranda - Prodi D4 Teknologi Rekayasa Perangkat Lunak UNBIM')
 
 @section('content')
-<div class="glass-card p-4 p-lg-5 mb-4">
-    <h2 class="fw-bold text-center mb-4">Mengapa D4 Teknologi Rekayasa Perangkat Lunak UNBIM?</h2>
-
-    <div class="row g-4 text-center">
-        @forelse ($fasilitasUnggulan as $item)
-            <div class="col-md-6 col-lg-3">
-                <div class="h-100 px-2">
-                    <span class="icon-circle mb-3">
-                        <i class="bi {{ $item->ikon ?: 'bi-cpu' }}"></i>
-                    </span>
-                    <h5 class="fw-bold">{{ $item->nama }}</h5>
-                    <p class="text-muted mb-0">{{ \Illuminate\Support\Str::limit($item->deskripsi, 80, '...') }}</p>
-                </div>
-            </div>
-        @empty
-            <div class="col-12 text-muted">Data keunggulan belum tersedia.</div>
-        @endforelse
-    </div>
-</div>
-
 <div class="row g-4 mb-4">
     <div class="col-lg-8">
         <div class="glass-card p-4 h-100">
@@ -54,6 +34,44 @@
         </div>
     </div>
 </div>
+
+@if ($fasilitasSlides->isNotEmpty())
+    <div class="glass-card p-4 mb-4">
+        <h3 class="fw-bold mb-3">Fasilitas</h3>
+        <div id="fasilitasCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                @foreach ($fasilitasSlides as $slide)
+                    <button type="button" data-bs-target="#fasilitasCarousel" data-bs-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}" @if ($loop->first) aria-current="true" @endif aria-label="Slide {{ $loop->iteration }}"></button>
+                @endforeach
+            </div>
+
+            <div class="carousel-inner rounded-4 overflow-hidden">
+                @foreach ($fasilitasSlides as $slide)
+                    <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                        <img src="{{ $slide['image_url'] }}" class="d-block w-100" alt="{{ $slide['title'] }}" style="height: 380px; object-fit: cover;">
+                        <div class="carousel-caption text-start p-3 p-md-4 rounded-3" style="background: rgba(13, 27, 45, 0.62);">
+                            <h5 class="fw-bold mb-1">{{ $slide['title'] }}</h5>
+                            @if (!empty($slide['body']))
+                                <p class="mb-0">{{ \Illuminate\Support\Str::limit(strip_tags($slide['body']), 120) }}</p>
+                            @endif
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+            @if ($fasilitasSlides->count() > 1)
+                <button class="carousel-control-prev" type="button" data-bs-target="#fasilitasCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#fasilitasCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            @endif
+        </div>
+    </div>
+@endif
 
 <div class="row g-4">
     <div class="col-12">
