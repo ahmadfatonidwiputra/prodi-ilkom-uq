@@ -91,6 +91,15 @@
             border-left: 2px solid #ece5fb;
         }
 
+        .dropdown-toggle-icon {
+            font-size: .85rem;
+            transition: transform .2s ease;
+        }
+
+        .sidebar .nav-link[aria-expanded="true"] .dropdown-toggle-icon {
+            transform: rotate(180deg);
+        }
+
         .submenu a {
             display: block;
             font-size: .94rem;
@@ -172,6 +181,11 @@
 <body>
 @php
     $currentSection = request()->route('section');
+    $isTentangActive = request()->routeIs('admin.site-content.*') && str_starts_with((string) $currentSection, 'tentang-');
+    $isKurikulumActive = request()->routeIs('admin.kurikulum.*') || ($currentSection && str_starts_with((string) $currentSection, 'kurikulum-'));
+    $isFasilitasActive = request()->routeIs('admin.site-content.*') && str_starts_with((string) $currentSection, 'fasilitas-');
+    $isHmpsActive = request()->routeIs('admin.site-content.*') && str_starts_with((string) $currentSection, 'hmps-');
+    $isPendaftaranActive = request()->routeIs('admin.pendaftaran.*') || $currentSection === 'pendaftaran-banner';
 @endphp
 <div class="d-flex admin-shell">
     <aside class="sidebar p-3 p-lg-4 d-flex flex-column">
@@ -191,63 +205,103 @@
 
             <div class="menu-title">Konten Website</div>
 
-            <a class="nav-link {{ request()->routeIs('admin.site-content.*') && str_starts_with((string) $currentSection, 'tentang-') ? 'active' : '' }}" href="#">
+            <a class="nav-link {{ $isTentangActive ? 'active' : '' }}"
+               data-bs-toggle="collapse"
+               href="#menuTentangProdi"
+               role="button"
+               aria-expanded="{{ $isTentangActive ? 'true' : 'false' }}"
+               aria-controls="menuTentangProdi">
                 <span><i class="bi bi-info-circle"></i> Tentang Prodi</span>
+                <i class="bi bi-chevron-down dropdown-toggle-icon"></i>
             </a>
-            <ul class="submenu">
-                <li><a class="{{ $currentSection === 'tentang-profil-program-studi' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'tentang-profil-program-studi') }}">Profil Program Studi</a></li>
-                <li><a class="{{ $currentSection === 'tentang-visi-misi' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'tentang-visi-misi') }}">Visi Misi</a></li>
-                <li><a class="{{ $currentSection === 'tentang-profil-lulusan' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'tentang-profil-lulusan') }}">Profil Lulusan</a></li>
-                <li><a class="{{ $currentSection === 'tentang-profesi-profil-lulusan' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'tentang-profesi-profil-lulusan') }}">Profesi Profil Lulusan</a></li>
-                <li><a class="{{ $currentSection === 'tentang-struktur-organisasi' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'tentang-struktur-organisasi') }}">Struktur Organisasi</a></li>
-            </ul>
+            <div class="collapse {{ $isTentangActive ? 'show' : '' }}" id="menuTentangProdi">
+                <ul class="submenu">
+                    <li><a class="{{ $currentSection === 'tentang-profil-program-studi' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'tentang-profil-program-studi') }}">Profil Program Studi</a></li>
+                    <li><a class="{{ $currentSection === 'tentang-visi-misi' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'tentang-visi-misi') }}">Visi Misi</a></li>
+                    <li><a class="{{ $currentSection === 'tentang-profil-lulusan' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'tentang-profil-lulusan') }}">Profil Lulusan</a></li>
+                    <li><a class="{{ $currentSection === 'tentang-profesi-profil-lulusan' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'tentang-profesi-profil-lulusan') }}">Profesi Profil Lulusan</a></li>
+                    <li><a class="{{ $currentSection === 'tentang-struktur-organisasi' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'tentang-struktur-organisasi') }}">Struktur Organisasi</a></li>
+                </ul>
+            </div>
 
-            <a class="nav-link {{ request()->routeIs('admin.kurikulum.*') || ($currentSection && str_starts_with((string) $currentSection, 'kurikulum-')) ? 'active' : '' }}" href="{{ route('admin.kurikulum.index') }}">
+            <a class="nav-link {{ $isKurikulumActive ? 'active' : '' }}"
+               data-bs-toggle="collapse"
+               href="#menuKurikulum"
+               role="button"
+               aria-expanded="{{ $isKurikulumActive ? 'true' : 'false' }}"
+               aria-controls="menuKurikulum">
                 <span><i class="bi bi-journal-text"></i> Kurikulum</span>
+                <i class="bi bi-chevron-down dropdown-toggle-icon"></i>
             </a>
-            <ul class="submenu">
-                <li><a class="{{ request()->routeIs('admin.kurikulum.*') ? 'active' : '' }}" href="{{ route('admin.kurikulum.index') }}">Matakuliah</a></li>
-                <li><a class="{{ $currentSection === 'kurikulum-rps' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'kurikulum-rps') }}">RPS</a></li>
-                <li><a class="{{ $currentSection === 'kurikulum-jadwal-kuliah' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'kurikulum-jadwal-kuliah') }}">Jadwal Kuliah</a></li>
-            </ul>
+            <div class="collapse {{ $isKurikulumActive ? 'show' : '' }}" id="menuKurikulum">
+                <ul class="submenu">
+                    <li><a class="{{ request()->routeIs('admin.kurikulum.*') ? 'active' : '' }}" href="{{ route('admin.kurikulum.index') }}">Matakuliah</a></li>
+                    <li><a class="{{ $currentSection === 'kurikulum-rps' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'kurikulum-rps') }}">RPS</a></li>
+                    <li><a class="{{ $currentSection === 'kurikulum-jadwal-kuliah' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'kurikulum-jadwal-kuliah') }}">Jadwal Kuliah</a></li>
+                </ul>
+            </div>
 
             <a class="nav-link {{ request()->routeIs('admin.dosen.*') ? 'active' : '' }}" href="{{ route('admin.dosen.index') }}">
                 <span><i class="bi bi-people"></i> Manajemen Dosen</span>
             </a>
 
-            <a class="nav-link {{ request()->routeIs('admin.site-content.*') && str_starts_with((string) $currentSection, 'fasilitas-') ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'fasilitas-lab-pemrograman') }}">
+            <a class="nav-link {{ $isFasilitasActive ? 'active' : '' }}"
+               data-bs-toggle="collapse"
+               href="#menuFasilitas"
+               role="button"
+               aria-expanded="{{ $isFasilitasActive ? 'true' : 'false' }}"
+               aria-controls="menuFasilitas">
                 <span><i class="bi bi-building"></i> Fasilitas & Lab</span>
+                <i class="bi bi-chevron-down dropdown-toggle-icon"></i>
             </a>
-            <ul class="submenu">
-                <li><a class="{{ $currentSection === 'fasilitas-lab-pemrograman' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'fasilitas-lab-pemrograman') }}">Lab Pemrograman</a></li>
-                <li><a class="{{ $currentSection === 'fasilitas-lab-jaringan-komputer' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'fasilitas-lab-jaringan-komputer') }}">Lab Jaringan Komputer</a></li>
-                <li><a class="{{ $currentSection === 'fasilitas-ruang-kelas' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'fasilitas-ruang-kelas') }}">Ruang Kelas</a></li>
-                <li><a class="{{ $currentSection === 'fasilitas-perpustakaan' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'fasilitas-perpustakaan') }}">Perpustakaan</a></li>
-                <li><a class="{{ $currentSection === 'fasilitas-coding-learn' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'fasilitas-coding-learn') }}">Coding Learn</a></li>
-            </ul>
+            <div class="collapse {{ $isFasilitasActive ? 'show' : '' }}" id="menuFasilitas">
+                <ul class="submenu">
+                    <li><a class="{{ $currentSection === 'fasilitas-lab-pemrograman' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'fasilitas-lab-pemrograman') }}">Lab Pemrograman</a></li>
+                    <li><a class="{{ $currentSection === 'fasilitas-lab-jaringan-komputer' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'fasilitas-lab-jaringan-komputer') }}">Lab Jaringan Komputer</a></li>
+                    <li><a class="{{ $currentSection === 'fasilitas-ruang-kelas' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'fasilitas-ruang-kelas') }}">Ruang Kelas</a></li>
+                    <li><a class="{{ $currentSection === 'fasilitas-perpustakaan' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'fasilitas-perpustakaan') }}">Perpustakaan</a></li>
+                    <li><a class="{{ $currentSection === 'fasilitas-coding-learn' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'fasilitas-coding-learn') }}">Coding Learn</a></li>
+                </ul>
+            </div>
 
             <a class="nav-link {{ request()->routeIs('admin.prestasi.*') ? 'active' : '' }}" href="{{ route('admin.prestasi.index') }}">
                 <span><i class="bi bi-trophy"></i> Prestasi Mahasiswa</span>
             </a>
 
-            <a class="nav-link {{ request()->routeIs('admin.site-content.*') && str_starts_with((string) $currentSection, 'hmps-') ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'hmps-profil') }}">
+            <a class="nav-link {{ $isHmpsActive ? 'active' : '' }}"
+               data-bs-toggle="collapse"
+               href="#menuHmps"
+               role="button"
+               aria-expanded="{{ $isHmpsActive ? 'true' : 'false' }}"
+               aria-controls="menuHmps">
                 <span><i class="bi bi-diagram-3"></i> HMPS</span>
+                <i class="bi bi-chevron-down dropdown-toggle-icon"></i>
             </a>
-            <ul class="submenu">
-                <li><a class="{{ $currentSection === 'hmps-profil' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'hmps-profil') }}">Profil HMPS</a></li>
-                <li><a class="{{ $currentSection === 'hmps-struktur-organisasi' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'hmps-struktur-organisasi') }}">Struktur Organisasi</a></li>
-                <li><a class="{{ $currentSection === 'hmps-program-kerja' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'hmps-program-kerja') }}">Program Kerja</a></li>
-                <li><a class="{{ $currentSection === 'hmps-kegiatan' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'hmps-kegiatan') }}">Kegiatan</a></li>
-                <li><a class="{{ $currentSection === 'hmps-rekruitment' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'hmps-rekruitment') }}">Rekruitment</a></li>
-            </ul>
+            <div class="collapse {{ $isHmpsActive ? 'show' : '' }}" id="menuHmps">
+                <ul class="submenu">
+                    <li><a class="{{ $currentSection === 'hmps-profil' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'hmps-profil') }}">Profil HMPS</a></li>
+                    <li><a class="{{ $currentSection === 'hmps-struktur-organisasi' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'hmps-struktur-organisasi') }}">Struktur Organisasi</a></li>
+                    <li><a class="{{ $currentSection === 'hmps-program-kerja' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'hmps-program-kerja') }}">Program Kerja</a></li>
+                    <li><a class="{{ $currentSection === 'hmps-kegiatan' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'hmps-kegiatan') }}">Kegiatan</a></li>
+                    <li><a class="{{ $currentSection === 'hmps-rekruitment' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'hmps-rekruitment') }}">Rekruitment</a></li>
+                </ul>
+            </div>
 
-            <a class="nav-link {{ request()->routeIs('admin.pendaftaran.*') || $currentSection === 'pendaftaran-banner' ? 'active' : '' }}" href="{{ route('admin.pendaftaran.index') }}">
+            <a class="nav-link {{ $isPendaftaranActive ? 'active' : '' }}"
+               data-bs-toggle="collapse"
+               href="#menuPendaftaran"
+               role="button"
+               aria-expanded="{{ $isPendaftaranActive ? 'true' : 'false' }}"
+               aria-controls="menuPendaftaran">
                 <span><i class="bi bi-inboxes"></i> Pendaftaran Masuk</span>
+                <i class="bi bi-chevron-down dropdown-toggle-icon"></i>
             </a>
-            <ul class="submenu">
-                <li><a class="{{ $currentSection === 'pendaftaran-banner' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'pendaftaran-banner') }}">Banner Pendaftaran</a></li>
-                <li><a class="{{ request()->routeIs('admin.pendaftaran.*') ? 'active' : '' }}" href="{{ route('admin.pendaftaran.index') }}">Data Form Pendaftaran</a></li>
-            </ul>
+            <div class="collapse {{ $isPendaftaranActive ? 'show' : '' }}" id="menuPendaftaran">
+                <ul class="submenu">
+                    <li><a class="{{ $currentSection === 'pendaftaran-banner' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'pendaftaran-banner') }}">Banner Pendaftaran</a></li>
+                    <li><a class="{{ request()->routeIs('admin.pendaftaran.*') ? 'active' : '' }}" href="{{ route('admin.pendaftaran.index') }}">Data Form Pendaftaran</a></li>
+                </ul>
+            </div>
         </nav>
 
         <div class="mt-auto pt-3">
