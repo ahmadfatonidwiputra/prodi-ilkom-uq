@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\Berita;
 use App\Models\Dosen;
 use App\Models\Fasilitas;
 use App\Models\Pendaftaran;
@@ -21,7 +20,6 @@ class HomeController extends Controller
         $fasilitasUnggulan = Schema::hasTable('fasilitas')
             ? Fasilitas::orderBy('urutan')->latest()->take(4)->get()
             : collect();
-        $beritaTerbaru = Berita::latest()->take(3)->get();
         $dosenUnggulan = Dosen::latest()->take(4)->get();
 
         $statistik = [
@@ -35,7 +33,7 @@ class HomeController extends Controller
             'fasilitas' => Schema::hasTable('fasilitas') ? Fasilitas::count() : 0,
         ];
 
-        return view('user.home', compact('profil', 'fasilitasUnggulan', 'beritaTerbaru', 'dosenUnggulan', 'statistik'));
+        return view('user.home', compact('profil', 'fasilitasUnggulan', 'dosenUnggulan', 'statistik'));
     }
 
     public function profil(): View
@@ -50,10 +48,5 @@ class HomeController extends Controller
         $profil = ProfilProdi::latest()->first();
 
         return view('user.visi-misi', compact('profil'));
-    }
-
-    public function kontak(): View
-    {
-        return view('user.kontak');
     }
 }

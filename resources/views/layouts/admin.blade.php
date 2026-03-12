@@ -241,15 +241,6 @@
                 <li><a class="{{ $currentSection === 'hmps-rekruitment' ? 'active' : '' }}" href="{{ route('admin.site-content.edit', 'hmps-rekruitment') }}">Rekruitment</a></li>
             </ul>
 
-            <a class="nav-link {{ request()->routeIs('admin.pengumuman.*') || request()->routeIs('admin.berita.*') ? 'active' : '' }}" href="{{ route('admin.pengumuman.index') }}">
-                <span><i class="bi bi-megaphone"></i> Pengumuman</span>
-            </a>
-            <a class="nav-link {{ request()->routeIs('admin.berita.*') ? 'active' : '' }}" href="{{ route('admin.berita.index') }}">
-                <span><i class="bi bi-newspaper"></i> Berita</span>
-            </a>
-            <a class="nav-link {{ request()->routeIs('admin.galeri.*') ? 'active' : '' }}" href="{{ route('admin.galeri.index') }}">
-                <span><i class="bi bi-images"></i> Galeri</span>
-            </a>
             <a class="nav-link {{ request()->routeIs('admin.pendaftaran.*') || $currentSection === 'pendaftaran-banner' ? 'active' : '' }}" href="{{ route('admin.pendaftaran.index') }}">
                 <span><i class="bi bi-inboxes"></i> Pendaftaran Masuk</span>
             </a>

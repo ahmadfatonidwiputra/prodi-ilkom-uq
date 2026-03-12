@@ -1,23 +1,17 @@
 <?php
 
-use App\Http\Controllers\Admin\BeritaController as AdminBeritaController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DosenController as AdminDosenController;
-use App\Http\Controllers\Admin\GaleriController as AdminGaleriController;
 use App\Http\Controllers\Admin\KurikulumController as AdminKurikulumController;
 use App\Http\Controllers\Admin\PendaftaranController as AdminPendaftaranController;
-use App\Http\Controllers\Admin\PengumumanController as AdminPengumumanController;
 use App\Http\Controllers\Admin\PrestasiMahasiswaController as AdminPrestasiMahasiswaController;
 use App\Http\Controllers\Admin\ProfilController as AdminProfilController;
 use App\Http\Controllers\Admin\SiteContentController as AdminSiteContentController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\User\BeritaController as UserBeritaController;
 use App\Http\Controllers\User\DosenController as UserDosenController;
-use App\Http\Controllers\User\GaleriController as UserGaleriController;
 use App\Http\Controllers\User\HomeController as UserHomeController;
 use App\Http\Controllers\User\KurikulumController as UserKurikulumController;
 use App\Http\Controllers\User\PendaftaranController as UserPendaftaranController;
-use App\Http\Controllers\User\PengumumanController as UserPengumumanController;
 use App\Http\Controllers\User\PrestasiMahasiswaController as UserPrestasiMahasiswaController;
 use App\Http\Controllers\User\SitePageController as UserSitePageController;
 use Illuminate\Support\Facades\Route;
@@ -97,16 +91,8 @@ Route::prefix('hmps')->name('hmps.')->group(function (): void {
         ->name('rekruitment');
 });
 
-Route::get('/pengumuman', [UserPengumumanController::class, 'index'])->name('pengumuman');
-Route::get('/pengumuman/{pengumuman:slug}', [UserPengumumanController::class, 'show'])->name('pengumuman.show');
-
-Route::get('/berita', [UserBeritaController::class, 'index'])->name('berita');
-Route::get('/berita/{berita:slug}', [UserBeritaController::class, 'show'])->name('berita.show');
-
-Route::get('/galeri', [UserGaleriController::class, 'index'])->name('galeri');
 Route::get('/pendaftaran', [UserPendaftaranController::class, 'index'])->name('pendaftaran');
 Route::post('/pendaftaran', [UserPendaftaranController::class, 'store'])->name('pendaftaran.store');
-Route::get('/kontak', [UserHomeController::class, 'kontak'])->name('kontak');
 
 // Legacy aliases
 Route::redirect('/profil', '/tentang-prodi/profil-program-studi')->name('profil');
@@ -128,9 +114,6 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function (): v
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('/dosen', AdminDosenController::class)->parameters(['dosen' => 'dosen']);
-    Route::resource('/berita', AdminBeritaController::class)->parameters(['berita' => 'berita']);
-    Route::resource('/pengumuman', AdminPengumumanController::class)->parameters(['pengumuman' => 'pengumuman']);
-    Route::resource('/galeri', AdminGaleriController::class)->parameters(['galeri' => 'galeri']);
     Route::resource('/kurikulum', AdminKurikulumController::class)->parameters(['kurikulum' => 'kurikulum']);
     Route::resource('/prestasi-mahasiswa', AdminPrestasiMahasiswaController::class)
         ->parameters(['prestasi-mahasiswa' => 'prestasi'])

@@ -2,13 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Berita;
 use App\Models\Dosen;
 use App\Models\Fasilitas;
 use App\Models\Kurikulum;
 use App\Models\Mahasiswa;
 use App\Models\Pendaftaran;
-use App\Models\Pengumuman;
 use App\Models\ProfilProdi;
 use Illuminate\Database\Seeder;
 
@@ -36,38 +34,6 @@ class ProgramDataSeeder extends Seeder
 
         foreach ($dosenData as $dosen) {
             Dosen::firstOrCreate(['nidn' => $dosen['nidn']], $dosen);
-        }
-
-        $beritaData = [
-            [
-                'judul' => 'Kolaborasi Prodi D4 Teknologi Rekayasa Perangkat Lunak dengan Industri Lokal',
-                'isi' => 'Program studi menjalin kerja sama dengan industri lokal untuk meningkatkan kesiapan lulusan dalam menghadapi kebutuhan dunia kerja digital.',
-            ],
-            [
-                'judul' => 'Workshop Pengembangan Aplikasi Web Full Stack',
-                'isi' => 'Kegiatan workshop internal membekali mahasiswa dengan keahlian Laravel, API, dan deployment modern.',
-            ],
-        ];
-
-        foreach ($beritaData as $berita) {
-            Berita::firstOrCreate(['judul' => $berita['judul']], $berita + ['gambar' => null]);
-        }
-
-        $pengumumanData = [
-            [
-                'judul' => 'Pembukaan Pendaftaran Mahasiswa Baru Gelombang 1',
-                'isi' => 'Pendaftaran mahasiswa baru telah dibuka. Calon mahasiswa dapat mengisi formulir online melalui halaman pendaftaran.',
-                'tanggal' => now()->toDateString(),
-            ],
-            [
-                'judul' => 'Jadwal Seminar Proposal Semester Genap',
-                'isi' => 'Seminar proposal akan dilaksanakan pada pekan kedua bulan ini. Mahasiswa diminta mempersiapkan berkas administrasi.',
-                'tanggal' => now()->addDays(7)->toDateString(),
-            ],
-        ];
-
-        foreach ($pengumumanData as $pengumuman) {
-            Pengumuman::firstOrCreate(['judul' => $pengumuman['judul']], $pengumuman);
         }
 
         $fasilitasData = [

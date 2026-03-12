@@ -56,7 +56,7 @@
 </div>
 
 <div class="row g-4">
-    <div class="col-lg-6">
+    <div class="col-12">
         <div class="glass-card p-4 h-100">
             <h4 class="fw-bold mb-3">Dosen Unggulan</h4>
             @forelse ($dosenUnggulan as $dosen)
@@ -71,20 +71,6 @@
                 </div>
             @empty
                 <p class="text-muted mb-0">Data dosen belum tersedia.</p>
-            @endforelse
-        </div>
-    </div>
-
-    <div class="col-lg-6">
-        <div class="glass-card p-4 h-100">
-            <h4 class="fw-bold mb-3">Berita Terbaru</h4>
-            @forelse ($beritaTerbaru as $berita)
-                <div class="py-2 border-bottom">
-                    <a class="text-decoration-none fw-semibold" href="{{ route('berita.show', $berita) }}">{{ $berita->judul }}</a>
-                    <div class="small text-muted">{{ $berita->created_at->translatedFormat('d M Y') }}</div>
-                </div>
-            @empty
-                <p class="text-muted mb-0">Belum ada berita terbaru.</p>
             @endforelse
         </div>
     </div>

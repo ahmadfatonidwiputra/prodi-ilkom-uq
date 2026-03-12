@@ -3,12 +3,9 @@
 namespace Tests\Feature;
 
 use App\Http\Controllers\Admin\SiteContentController as AdminSiteContentController;
-use App\Models\Berita;
 use App\Models\Dosen;
-use App\Models\Galeri;
 use App\Models\Kurikulum;
 use App\Models\Pendaftaran;
-use App\Models\Pengumuman;
 use App\Models\PrestasiMahasiswa;
 use App\Models\SiteContent;
 use App\Models\User;
@@ -59,11 +56,7 @@ class ProgramWebsiteFeatureTest extends TestCase
             '/hmps/program-kerja',
             '/hmps/kegiatan',
             '/hmps/rekruitment',
-            '/pengumuman',
-            '/berita',
-            '/galeri',
             '/pendaftaran',
-            '/kontak',
         ];
 
         foreach ($pages as $page) {
@@ -316,25 +309,6 @@ class ProgramWebsiteFeatureTest extends TestCase
         }
     }
 
-    public function test_pengumuman_pdf_upload_download_and_paths_are_valid(): void
-    {
-        $this->actingAs($this->admin)->post(route('admin.pengumuman.store'), [
-            'judul' => 'Pengumuman Ujian',
-            'isi' => 'Detail pengumuman ujian tengah semester',
-            'tanggal' => now()->toDateString(),
-            'file_path' => UploadedFile::fake()->create('pengumuman.pdf', 120, 'application/pdf'),
-        ])->assertRedirect(route('admin.pengumuman.index'));
-
-        $pengumuman = Pengumuman::query()->where('judul', 'Pengumuman Ujian')->firstOrFail();
-
-        $this->assertNotNull($pengumuman->slug);
-        $this->assertNotNull($pengumuman->file_path);
-        Storage::disk('s3')->assertExists($pengumuman->file_path);
-
-        $this->get('/pengumuman')->assertOk()->assertSee('Pengumuman Ujian');
-        $this->get('/pengumuman/'.$pengumuman->slug)->assertOk()->assertSee('Unduh File Pengumuman');
-    }
-
     public function test_pendaftaran_banner_form_validation_and_submission_work(): void
     {
         $this->updateSection('pendaftaran-banner', [
@@ -383,31 +357,6 @@ class ProgramWebsiteFeatureTest extends TestCase
 
         $this->actingAs($this->admin)->get(route('admin.pendaftaran.index'))->assertOk();
         $this->actingAs($this->admin)->get(route('admin.pendaftaran.export'))->assertOk();
-    }
-
-    public function test_berita_and_galeri_image_upload_and_display_work(): void
-    {
-        $this->actingAs($this->admin)->post(route('admin.berita.store'), [
-            'judul' => 'Berita TRPL',
-            'isi' => 'Konten berita terbaru',
-            'gambar' => UploadedFile::fake()->image('berita.jpg'),
-        ])->assertRedirect(route('admin.berita.index'));
-
-        $berita = Berita::query()->where('judul', 'Berita TRPL')->firstOrFail();
-        Storage::disk('s3')->assertExists($berita->gambar);
-
-        $this->get('/berita')->assertOk()->assertSee('Berita TRPL');
-        $this->get('/berita/'.$berita->slug)->assertOk()->assertSee('Konten berita terbaru');
-
-        $this->actingAs($this->admin)->post(route('admin.galeri.store'), [
-            'judul' => 'Galeri Kegiatan',
-            'gambar' => UploadedFile::fake()->image('galeri.jpg'),
-        ])->assertRedirect(route('admin.galeri.index'));
-
-        $galeri = Galeri::query()->where('judul', 'Galeri Kegiatan')->firstOrFail();
-        Storage::disk('s3')->assertExists($galeri->gambar);
-
-        $this->get('/galeri')->assertOk()->assertSee('Galeri Kegiatan');
     }
 
     /**

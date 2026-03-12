@@ -75,10 +75,10 @@
         <div class="panel-card p-4 mb-4">
             <h3 class="h4 fw-bold mb-3">Quick Actions</h3>
             <div class="row g-2">
-                <div class="col-6"><a href="{{ route('admin.berita.create') }}" class="btn btn-quick w-100"><i class="bi bi-newspaper me-1"></i> Buat Berita Baru</a></div>
+                <div class="col-6"><a href="{{ route('admin.dosen.create') }}" class="btn btn-quick w-100"><i class="bi bi-person-plus me-1"></i> Tambah Dosen</a></div>
                 <div class="col-6"><a href="{{ route('admin.kurikulum.index') }}" class="btn btn-quick w-100"><i class="bi bi-journal-text me-1"></i> Update Kurikulum</a></div>
                 <div class="col-6"><a href="{{ route('admin.site-content.edit', 'tentang-profil-program-studi') }}" class="btn btn-quick w-100"><i class="bi bi-pencil-square me-1"></i> Edit Profil Prodi</a></div>
-                <div class="col-6"><a href="{{ route('admin.pengumuman.create') }}" class="btn btn-quick w-100"><i class="bi bi-megaphone me-1"></i> Kirim Pengumuman</a></div>
+                <div class="col-6"><a href="{{ route('admin.prestasi.create') }}" class="btn btn-quick w-100"><i class="bi bi-trophy me-1"></i> Input Prestasi</a></div>
             </div>
         </div>
 
@@ -86,9 +86,8 @@
             <h3 class="h5 fw-bold mb-3">Ringkasan Data</h3>
             <div class="small">
                 <div class="d-flex justify-content-between py-2 border-bottom border-secondary-subtle"><span>Total Dosen</span><strong>{{ $metrics['totalDosen'] }}</strong></div>
-                <div class="d-flex justify-content-between py-2 border-bottom border-secondary-subtle"><span>Total Berita</span><strong>{{ $metrics['totalBerita'] }}</strong></div>
-                <div class="d-flex justify-content-between py-2 border-bottom border-secondary-subtle"><span>Total Pengumuman</span><strong>{{ $metrics['totalPengumuman'] }}</strong></div>
-                <div class="d-flex justify-content-between py-2 border-bottom border-secondary-subtle"><span>Total Galeri</span><strong>{{ $metrics['totalGaleri'] }}</strong></div>
+                <div class="d-flex justify-content-between py-2 border-bottom border-secondary-subtle"><span>Total Matakuliah</span><strong>{{ $metrics['totalKurikulum'] }}</strong></div>
+                <div class="d-flex justify-content-between py-2 border-bottom border-secondary-subtle"><span>Total Pendaftaran</span><strong>{{ $metrics['totalPendaftaran'] }}</strong></div>
                 <div class="d-flex justify-content-between py-2"><span>Total Prestasi Mahasiswa</span><strong>{{ $metrics['totalPrestasiMahasiswa'] }}</strong></div>
             </div>
         </div>

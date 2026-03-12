@@ -82,10 +82,6 @@
                     <li class="nav-item"><a class="nav-link {{ request()->routeIs('profil') ? 'active' : '' }}" href="{{ route('profil') }}">Profil</a></li>
                     <li class="nav-item"><a class="nav-link {{ request()->routeIs('visi-misi') ? 'active' : '' }}" href="{{ route('visi-misi') }}">Visi &amp; Misi</a></li>
                     <li class="nav-item"><a class="nav-link {{ request()->routeIs('dosen') ? 'active' : '' }}" href="{{ route('dosen') }}">Dosen</a></li>
-                    <li class="nav-item"><a class="nav-link {{ request()->routeIs('berita*') ? 'active' : '' }}" href="{{ route('berita') }}">Berita</a></li>
-                    <li class="nav-item"><a class="nav-link {{ request()->routeIs('pengumuman*') ? 'active' : '' }}" href="{{ route('pengumuman') }}">Pengumuman</a></li>
-                    <li class="nav-item"><a class="nav-link {{ request()->routeIs('galeri') ? 'active' : '' }}" href="{{ route('galeri') }}">Galeri</a></li>
-                    <li class="nav-item"><a class="nav-link {{ request()->routeIs('kontak') ? 'active' : '' }}" href="{{ route('kontak') }}">Kontak</a></li>
                     @auth
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle {{ request()->routeIs('admin.*') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -94,9 +90,6 @@
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                                 <li><a class="dropdown-item" href="{{ route('admin.dosen.index') }}">Kelola Dosen</a></li>
-                                <li><a class="dropdown-item" href="{{ route('admin.berita.index') }}">Kelola Berita</a></li>
-                                <li><a class="dropdown-item" href="{{ route('admin.pengumuman.index') }}">Kelola Pengumuman</a></li>
-                                <li><a class="dropdown-item" href="{{ route('admin.galeri.index') }}">Kelola Galeri</a></li>
                                 <li><a class="dropdown-item" href="{{ route('admin.profil.edit') }}">Profil Prodi</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li>

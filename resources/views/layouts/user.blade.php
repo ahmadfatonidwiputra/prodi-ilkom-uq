@@ -199,10 +199,6 @@
                     </ul>
                 </li>
 
-                <li class="nav-item"><a class="nav-link {{ request()->routeIs('pengumuman*') ? 'active' : '' }}" href="{{ route('pengumuman') }}">Pengumuman</a></li>
-                <li class="nav-item"><a class="nav-link {{ request()->routeIs('berita*') ? 'active' : '' }}" href="{{ route('berita') }}">Berita</a></li>
-                <li class="nav-item"><a class="nav-link {{ request()->routeIs('galeri') ? 'active' : '' }}" href="{{ route('galeri') }}">Galeri</a></li>
-                <li class="nav-item"><a class="nav-link {{ request()->routeIs('kontak') ? 'active' : '' }}" href="{{ route('kontak') }}">Kontak</a></li>
                 <li class="nav-item"><a class="btn btn-daftar ms-lg-2 mt-2 mt-lg-0" href="{{ route('pendaftaran') }}">Pendaftaran</a></li>
             </ul>
         </div>
