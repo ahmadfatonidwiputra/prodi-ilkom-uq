@@ -24,6 +24,7 @@ class SiteContentController extends Controller
                 'title' => 'Profil Program Studi',
                 'key' => 'tentang_profil_program_studi',
                 'allow_body' => true,
+                'rich_text' => true,
                 'allow_image' => false,
                 'allow_file' => false,
                 'file_mimes' => '',
@@ -32,6 +33,7 @@ class SiteContentController extends Controller
                 'title' => 'Visi Misi',
                 'key' => 'tentang_visi_misi',
                 'allow_body' => true,
+                'rich_text' => true,
                 'allow_image' => false,
                 'allow_file' => false,
                 'file_mimes' => '',
@@ -40,6 +42,7 @@ class SiteContentController extends Controller
                 'title' => 'Profil Lulusan',
                 'key' => 'tentang_profil_lulusan',
                 'allow_body' => true,
+                'rich_text' => true,
                 'allow_image' => false,
                 'allow_file' => false,
                 'file_mimes' => '',
@@ -48,6 +51,7 @@ class SiteContentController extends Controller
                 'title' => 'Profesi Profil Lulusan',
                 'key' => 'tentang_profesi_profil_lulusan',
                 'allow_body' => true,
+                'rich_text' => true,
                 'allow_image' => false,
                 'allow_file' => false,
                 'file_mimes' => '',
@@ -222,7 +226,10 @@ class SiteContentController extends Controller
         ];
 
         if ($config['allow_body']) {
-            $payload['body'] = $validated['body'] ?? null;
+            $payload['body'] = $this->sanitizeBody(
+                $validated['body'] ?? null,
+                (bool) ($config['rich_text'] ?? false)
+            );
         }
 
         if ($config['allow_image'] && $request->hasFile('image_path')) {
@@ -265,5 +272,29 @@ class SiteContentController extends Controller
             500,
             'Tabel site_contents belum tersedia. Jalankan migration terlebih dahulu.'
         );
+    }
+
+    private function sanitizeBody(?string $body, bool $allowRichText): ?string
+    {
+        if ($body === null) {
+            return null;
+        }
+
+        if (! $allowRichText) {
+            $plain = trim(strip_tags($body));
+
+            return $plain !== '' ? nl2br(e($plain)) : null;
+        }
+
+        // Rich text content is edited only by authenticated admin.
+        // Keep formatting tags/attributes, but strip dangerous scripts and JS handlers.
+        $clean = trim($body);
+        $clean = preg_replace('#<script\b[^>]*>(.*?)</script>#is', '', $clean) ?? $clean;
+        $clean = preg_replace('#<style\b[^>]*>(.*?)</style>#is', '', $clean) ?? $clean;
+        $clean = preg_replace('/\s+on\w+\s*=\s*(".*?"|\'.*?\'|[^\s>]+)/i', '', $clean) ?? $clean;
+        $clean = preg_replace('/href\s*=\s*"javascript:[^"]*"/i', 'href="#"', $clean) ?? $clean;
+        $clean = preg_replace('/href\s*=\s*\'javascript:[^\']*\'/i', "href='#'", $clean) ?? $clean;
+
+        return trim($clean) !== '' ? $clean : null;
     }
 }

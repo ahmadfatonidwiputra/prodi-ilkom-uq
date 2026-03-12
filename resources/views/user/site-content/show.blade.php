@@ -2,6 +2,31 @@
 
 @section('title', $config['title'])
 
+@push('styles')
+    <style>
+        .rich-content p {
+            margin-bottom: 1rem;
+        }
+
+        .rich-content ol,
+        .rich-content ul {
+            padding-left: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .rich-content a {
+            color: #5f2ecf;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        .rich-content strong,
+        .rich-content b {
+            color: #111827;
+        }
+    </style>
+@endpush
+
 @section('content')
 <div class="card border-0 shadow-sm">
     <div class="card-body p-4 p-lg-5">
@@ -11,7 +36,7 @@
             <img src="{{ $content->image_url }}" alt="{{ $content?->title ?? $config['title'] }}" class="img-fluid rounded border mb-4">
         @endif
 
-        <div class="text-muted mb-4">
+        <div class="text-muted mb-4 rich-content">
             @if (!empty($content?->body))
                 {!! $content->body !!}
             @else
