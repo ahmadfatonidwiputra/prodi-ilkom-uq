@@ -6,8 +6,11 @@
 <div class="row g-4 mb-4">
     <div class="col-lg-8">
         <div class="glass-card p-4 h-100">
-            <h3 class="fw-bold mb-3">Profil Prodi</h3>
-            <p class="text-muted mb-0">{!! nl2br(e(\Illuminate\Support\Str::limit($profil->tentang ?? 'Profil program studi belum diisi.', 520))) !!}</p>
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+                <h3 class="fw-bold mb-0">{{ $profilSection['title'] }}</h3>
+                <a href="{{ $profilSection['detail_url'] }}" class="btn btn-sm btn-outline-primary">Lihat Selengkapnya</a>
+            </div>
+            <p class="text-muted mb-0">{!! nl2br(e($profilSection['excerpt'])) !!}</p>
         </div>
     </div>
     <div class="col-lg-4">

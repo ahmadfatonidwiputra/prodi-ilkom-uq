@@ -10,6 +10,7 @@ use App\Models\PrestasiMahasiswa;
 use App\Models\ProfilProdi;
 use App\Models\SiteContent;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 class HomeController extends Controller
@@ -17,11 +18,31 @@ class HomeController extends Controller
     public function index(): View
     {
         $profil = ProfilProdi::latest()->first();
+        $profilSection = [
+            'title' => 'Profil Prodi',
+            'excerpt' => Str::limit(strip_tags($profil?->tentang ?? 'Profil program studi belum diisi.'), 520),
+            'detail_url' => route('tentang-prodi.profil-program-studi'),
+        ];
 
         $dosenUnggulan = Dosen::latest()->take(4)->get();
         $fasilitasSlides = collect();
 
         if (Schema::hasTable('site_contents')) {
+            $profilProgramStudiContent = SiteContent::query()
+                ->where('key', 'tentang_profil_program_studi')
+                ->first();
+
+            if ($profilProgramStudiContent) {
+                $profilSection = [
+                    'title' => $profilProgramStudiContent->title ?: 'Profil Prodi',
+                    'excerpt' => Str::limit(
+                        strip_tags($profilProgramStudiContent->body ?: ($profil?->tentang ?? 'Profil program studi belum diisi.')),
+                        520
+                    ),
+                    'detail_url' => route('tentang-prodi.profil-program-studi'),
+                ];
+            }
+
             $fasilitasKeys = [
                 ['key' => 'fasilitas_lab_pemrograman', 'title' => 'Lab Pemrograman', 'route' => 'fasilitas.lab-pemrograman'],
                 ['key' => 'fasilitas_lab_jaringan_komputer', 'title' => 'Lab Jaringan Komputer', 'route' => 'fasilitas.lab-jaringan-komputer'],
@@ -61,7 +82,7 @@ class HomeController extends Controller
             'fasilitas' => Schema::hasTable('fasilitas') ? Fasilitas::count() : 0,
         ];
 
-        return view('user.home', compact('profil', 'dosenUnggulan', 'fasilitasSlides', 'statistik'));
+        return view('user.home', compact('profilSection', 'dosenUnggulan', 'fasilitasSlides', 'statistik'));
     }
 
     public function profil(): View
