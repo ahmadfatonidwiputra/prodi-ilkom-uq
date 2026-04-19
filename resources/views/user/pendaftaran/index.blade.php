@@ -3,80 +3,89 @@
 @section('title', 'Pendaftaran Mahasiswa Baru')
 
 @section('content')
-<div class="row g-4 justify-content-center">
-    @if ($banner?->image_url)
-        <div class="col-12">
-            <div class="card border-0 shadow-sm overflow-hidden">
-                <img src="{{ $banner->image_url }}" alt="Banner Pendaftaran" class="img-fluid" style="max-height: 360px; object-fit: cover; width: 100%;">
-            </div>
+<section class="section">
+    <div class="container">
+        
+        <div class="section-head" style="margin-left: auto; margin-right: auto; text-align: center;">
+            <p class="eyebrow mb-2">Pendaftaran D4 TRPL</p>
+            <h2>Formulir Pendaftaran</h2>
+            <p style="margin-left: auto; margin-right: auto;">Lengkapi data berikut untuk mendaftar sebagai mahasiswa baru di Program Studi D4 Teknologi Rekayasa Perangkat Lunak UNBIM.</p>
         </div>
-    @endif
 
-    <div class="col-lg-9">
-        <div class="card border-0 shadow-sm">
-            <div class="card-body p-4 p-lg-5">
-                <h1 class="h3 fw-bold mb-2">Formulir Pendaftaran</h1>
-                <p class="text-muted mb-4">Lengkapi data berikut untuk pendaftaran Program Studi D4 Teknologi Rekayasa Perangkat Lunak.</p>
+        @if (session('success'))
+            <div style="background: var(--accent-mint); color: var(--ink); padding: 16px 20px; border-radius: var(--r-md); margin-bottom: 32px; font-weight: 500; text-align: center;">
+                {{ session('success') }}
+            </div>
+        @endif
 
-                @if (session('success'))
-                    <div class="alert alert-success">{{ session('success') }}</div>
-                @endif
+        <div style="max-width: 800px; margin: 0 auto;">
+            @if (isset($banner) && $banner?->image_url)
+                <div class="card" style="padding: 0; overflow: hidden; margin-bottom: 32px; border: none;">
+                    <img src="{{ $banner->image_url }}" alt="Banner Pendaftaran" style="max-height: 360px; object-fit: cover; width: 100%; display: block;">
+                </div>
+            @endif
 
-                <form action="{{ route('pendaftaran.store') }}" method="POST" enctype="multipart/form-data" class="row g-3">
+            <div class="card card-pad-lg">
+                <form action="{{ route('pendaftaran.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    
+                    <div class="form-grid" style="margin-bottom: 24px;">
+                        <div class="field">
+                            <label>Nama Lengkap <span style="color: red;">*</span></label>
+                            <input type="text" name="nama_lengkap" value="{{ old('nama_lengkap') }}" required style="{{ $errors->has('nama_lengkap') ? 'border-color: red;' : '' }}">
+                            @error('nama_lengkap') <div class="hint" style="color: red;">{{ $message }}</div> @enderror
+                        </div>
 
-                    <div class="col-md-6">
-                        <label class="form-label">Nama Lengkap</label>
-                        <input type="text" name="nama_lengkap" value="{{ old('nama_lengkap') }}" class="form-control @error('nama_lengkap') is-invalid @enderror" required>
-                        @error('nama_lengkap') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        <div class="field">
+                            <label>Email <span style="color: red;">*</span></label>
+                            <input type="email" name="email" value="{{ old('email') }}" required style="{{ $errors->has('email') ? 'border-color: red;' : '' }}">
+                            @error('email') <div class="hint" style="color: red;">{{ $message }}</div> @enderror
+                        </div>
+                        
+                        <div class="field">
+                            <label>Nomor HP / WhatsApp <span style="color: red;">*</span></label>
+                            <input type="text" name="no_hp" value="{{ old('no_hp') }}" required style="{{ $errors->has('no_hp') ? 'border-color: red;' : '' }}">
+                            @error('no_hp') <div class="hint" style="color: red;">{{ $message }}</div> @enderror
+                        </div>
+
+                        <div class="field">
+                            <label>Asal Sekolah</label>
+                            <input type="text" name="asal_sekolah" value="{{ old('asal_sekolah') }}" style="{{ $errors->has('asal_sekolah') ? 'border-color: red;' : '' }}">
+                            @error('asal_sekolah') <div class="hint" style="color: red;">{{ $message }}</div> @enderror
+                        </div>
                     </div>
 
-                    <div class="col-md-6">
-                        <label class="form-label">Email</label>
-                        <input type="email" name="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" required>
-                        @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                    </div>
-
-                    <div class="col-md-6">
-                        <label class="form-label">Nomor HP</label>
-                        <input type="text" name="no_hp" value="{{ old('no_hp') }}" class="form-control @error('no_hp') is-invalid @enderror" required>
-                        @error('no_hp') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                    </div>
-
-                    <div class="col-md-6">
-                        <label class="form-label">Asal Sekolah</label>
-                        <input type="text" name="asal_sekolah" value="{{ old('asal_sekolah') }}" class="form-control @error('asal_sekolah') is-invalid @enderror">
-                        @error('asal_sekolah') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                    </div>
-
-                    <div class="col-12">
-                        <label class="form-label">Pilihan Program Studi</label>
-                        <select name="pilihan_program_studi" class="form-select @error('pilihan_program_studi') is-invalid @enderror" required>
+                    <div class="field" style="margin-bottom: 24px;">
+                        <label>Pilihan Program Studi <span style="color: red;">*</span></label>
+                        <select name="pilihan_program_studi" required style="{{ $errors->has('pilihan_program_studi') ? 'border-color: red;' : '' }}">
                             <option value="">-- Pilih Program Studi --</option>
                             <option value="D4 Teknologi Rekayasa Perangkat Lunak" @selected(old('pilihan_program_studi') === 'D4 Teknologi Rekayasa Perangkat Lunak')>D4 Teknologi Rekayasa Perangkat Lunak</option>
                         </select>
-                        @error('pilihan_program_studi') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        @error('pilihan_program_studi') <div class="hint" style="color: red;">{{ $message }}</div> @enderror
                     </div>
 
-                    <div class="col-12">
-                        <label class="form-label">Upload Dokumen (Opsional)</label>
-                        <input type="file" name="dokumen" class="form-control @error('dokumen') is-invalid @enderror" accept=".pdf,.jpg,.jpeg,.png">
-                        <div class="form-text">Format: PDF/JPG/PNG. Maksimal 10MB.</div>
-                        @error('dokumen') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                    <div class="field" style="margin-bottom: 24px;">
+                        <label>Upload Dokumen Pendukung (Opsional)</label>
+                        <input type="file" name="dokumen" accept=".pdf,.jpg,.jpeg,.png" style="{{ $errors->has('dokumen') ? 'border-color: red;' : '' }}">
+                        <div class="hint">Format: PDF/JPG/PNG. Maksimal 10MB.</div>
+                        @error('dokumen') <div class="hint" style="color: red;">{{ $message }}</div> @enderror
                     </div>
 
-                    <div class="col-12">
-                        <label class="form-label">Pesan (Opsional)</label>
-                        <textarea name="pesan" rows="4" class="form-control @error('pesan') is-invalid @enderror">{{ old('pesan') }}</textarea>
-                        @error('pesan') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                    <div class="field" style="margin-bottom: 32px;">
+                        <label>Pesan / Keterangan (Opsional)</label>
+                        <textarea name="pesan" rows="4" style="resize: vertical; {{ $errors->has('pesan') ? 'border-color: red;' : '' }}">{{ old('pesan') }}</textarea>
+                        @error('pesan') <div class="hint" style="color: red;">{{ $message }}</div> @enderror
                     </div>
 
-                    <div class="col-12 d-grid">
-                        <button type="submit" class="btn btn-primary btn-lg">Kirim Pendaftaran</button>
+                    <div style="text-align: center;">
+                        <button type="submit" class="btn-primary-lg" style="width: 100%; justify-content: center; font-size: 16px; padding: 18px;">
+                            Kirim Pendaftaran
+                        </button>
                     </div>
                 </form>
             </div>
         </div>
+
     </div>
-</div>
+</section>
 @endsection
