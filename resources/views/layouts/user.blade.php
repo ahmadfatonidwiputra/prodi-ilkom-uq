@@ -9,6 +9,19 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     <link rel="icon" type="image/png" sizes="64x64" href="{{ asset('images/unbim-favicon.png') }}">
 
+    <!-- Open Graph / WhatsApp / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="@yield('title', 'Prodi D4 Teknologi Rekayasa Perangkat Lunak UNBIM')">
+    <meta property="og:description" content="@yield('description', 'Program Studi D4 Teknologi Rekayasa Perangkat Lunak — UNBIM. Kurikulum terapan berfokus health technopreneurship, rekayasa modern, dan pengembangan produk digital.')">
+    <meta property="og:image" content="@yield('og_image', asset('images/unbim-logo.png'))">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="@yield('title', 'Prodi D4 Teknologi Rekayasa Perangkat Lunak UNBIM')">
+    <meta name="twitter:description" content="@yield('description', 'Program Studi D4 Teknologi Rekayasa Perangkat Lunak — UNBIM. Kurikulum terapan berfokus health technopreneurship, rekayasa modern, dan pengembangan produk digital.')">
+    <meta name="twitter:image" content="@yield('og_image', asset('images/unbim-logo.png'))">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
