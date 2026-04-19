@@ -181,6 +181,38 @@
                 @endforelse
             </div>
         </div>
+        </div>
+        </div>
+    </section>
+
+    {{-- ===== DIES NATALIS SECTION ===== --}}
+    <section class="section" style="padding-top: 24px; padding-bottom: 60px;">
+        <div class="container">
+            <div class="card card-pad-lg"
+                style="background: var(--purple-50); border: 1px solid var(--purple-100); display: flex; flex-direction: column; align-items: center; text-align: center;">
+                <span class="eyebrow" style="margin-bottom: 8px;">Spesial Event</span>
+                <h2 style="font-size: 36px; margin-bottom: 28px;">
+                    Dies Natalis <span class="serif accent">UNBIM ke-1</span>
+                </h2>
+
+                <div style="max-width: 600px; width: 100%; margin-bottom: 32px;">
+                    <img src="{{ asset('images/popup-dies-natalis1.jpg') }}" alt="Dies Natalis UNBIM 1st Anniversary"
+                        style="width: 100%; border-radius: 16px; box-shadow: var(--shadow-md);">
+                </div>
+
+                <div style="max-width: 700px;">
+                    <p style="font-size: 16px; color: var(--ink-soft); line-height: 1.7; margin-bottom: 24px;">
+                        Mari bersama-sama merayakan perjalanan luar biasa Universitas Bima Internasional di tahun
+                        pertamanya!
+                        Acara ini akan dimeriahkan oleh penampilan spesial dari bintang tamu hebat.
+                        Jadilah bagian dari sejarah awal kami dan saksikan kemeriahan yang dipenuhi dengan talenta, musik,
+                        serta hiburan inspiratif.
+                        <strong>Growing for The Bright Future!</strong>
+                    </p>
+                    <a href="https://wa.me/6285159218977" target="_blank" class="btn-primary-lg">Info Partisipasi &rarr;</a>
+                </div>
+            </div>
+        </div>
     </section>
 
     {{-- ===== POPUP BERANDA ===== --}}
@@ -188,65 +220,104 @@
         <div class="home-popup-overlay"></div>
         <div class="home-popup-content">
             <button id="closePopup" class="home-popup-close">✕</button>
-            <img src="{{ asset('images/popup-dies-natalis.jpg') }}" alt="Dies Natalis Universitas Bima Internasional">
+            <img src="{{ asset('images/popup-dies-natalis1.jpg') }}" alt="Dies Natalis Universitas Bima Internasional">
         </div>
     </div>
 
     @push('styles')
-    <style>
-        .home-popup {
-            position: fixed; inset: 0; z-index: 9999;
-            align-items: center; justify-content: center;
-            padding: 24px;
-        }
-        .home-popup-overlay {
-            position: absolute; inset: 0;
-            background: rgba(20, 17, 42, 0.7); backdrop-filter: blur(8px);
-        }
-        .home-popup-content {
-            position: relative; max-width: 500px; width: 100%;
-            background: transparent; border-radius: 16px;
-            box-shadow: 0 32px 80px rgba(0,0,0,0.5);
-            animation: popIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            overflow: hidden;
-        }
-        .home-popup-content img {
-            width: 100%; height: auto; display: block; border-radius: inherit;
-        }
-        .home-popup-close {
-            position: absolute; top: 12px; right: 12px;
-            background: rgba(255,255,255,0.25); color: #fff; backdrop-filter: blur(4px);
-            border: none; width: 34px; height: 34px; border-radius: 50%;
-            cursor: pointer; display: flex; align-items: center; justify-content: center;
-            font-size: 14px; font-weight: bold; transition: background 0.2s, color 0.2s;
-        }
-        .home-popup-close:hover { background: #fff; color: var(--ink); }
-        @keyframes popIn {
-            from { opacity: 0; transform: scale(0.9) translateY(20px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
-        }
-    </style>
+        <style>
+            .home-popup {
+                position: fixed;
+                inset: 0;
+                z-index: 9999;
+                align-items: center;
+                justify-content: center;
+                padding: 24px;
+            }
+
+            .home-popup-overlay {
+                position: absolute;
+                inset: 0;
+                background: rgba(20, 17, 42, 0.7);
+                backdrop-filter: blur(8px);
+            }
+
+            .home-popup-content {
+                position: relative;
+                max-width: 500px;
+                width: 100%;
+                background: transparent;
+                border-radius: 16px;
+                box-shadow: 0 32px 80px rgba(0, 0, 0, 0.5);
+                animation: popIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+                overflow: hidden;
+            }
+
+            .home-popup-content img {
+                width: 100%;
+                height: auto;
+                display: block;
+                border-radius: inherit;
+            }
+
+            .home-popup-close {
+                position: absolute;
+                top: 12px;
+                right: 12px;
+                background: rgba(255, 255, 255, 0.25);
+                color: #fff;
+                backdrop-filter: blur(4px);
+                border: none;
+                width: 34px;
+                height: 34px;
+                border-radius: 50%;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 14px;
+                font-weight: bold;
+                transition: background 0.2s, color 0.2s;
+            }
+
+            .home-popup-close:hover {
+                background: #fff;
+                color: var(--ink);
+            }
+
+            @keyframes popIn {
+                from {
+                    opacity: 0;
+                    transform: scale(0.9) translateY(20px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: scale(1) translateY(0);
+                }
+            }
+        </style>
     @endpush
 
     @push('scripts')
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var popup = document.getElementById('homePopup');
-            var closeBtn = document.getElementById('closePopup');
-            var overlay = document.querySelector('.home-popup-overlay');
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                var popup = document.getElementById('homePopup');
+                var closeBtn = document.getElementById('closePopup');
+                var overlay = document.querySelector('.home-popup-overlay');
 
-            // Use sessionStorage so the popup only shows once per tab session
-            // to avoid annoying returning users every time they visit Home.
-            if (!sessionStorage.getItem('diesNatalisPopupShown')) {
-                popup.style.display = 'flex';
-                sessionStorage.setItem('diesNatalisPopupShown', 'true');
-            }
+                // Use sessionStorage so the popup only shows once per tab session
+                // to avoid annoying returning users every time they visit Home.
+                if (!sessionStorage.getItem('diesNatalisPopupShown')) {
+                    popup.style.display = 'flex';
+                    sessionStorage.setItem('diesNatalisPopupShown', 'true');
+                }
 
-            const closeAction = () => { popup.style.display = 'none'; };
-            closeBtn.addEventListener('click', closeAction);
-            overlay.addEventListener('click', closeAction);
-        });
-    </script>
+                const closeAction = () => { popup.style.display = 'none'; };
+                closeBtn.addEventListener('click', closeAction);
+                overlay.addEventListener('click', closeAction);
+            });
+        </script>
     @endpush
 
 @endsection
