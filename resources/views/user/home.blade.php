@@ -302,16 +302,15 @@
     @push('scripts')
         <script>
             document.addEventListener("DOMContentLoaded", function () {
+                // Pastikan hanya tereksekusi secara spesifik di halaman utama (Beranda)
+                if (window.location.pathname !== '/' && window.location.pathname !== '/index.php') return;
+
                 var popup = document.getElementById('homePopup');
                 var closeBtn = document.getElementById('closePopup');
                 var overlay = document.querySelector('.home-popup-overlay');
 
-                // Use sessionStorage so the popup only shows once per tab session
-                // to avoid annoying returning users every time they visit Home.
-                if (!sessionStorage.getItem('diesNatalisPopupShown')) {
-                    popup.style.display = 'flex';
-                    sessionStorage.setItem('diesNatalisPopupShown', 'true');
-                }
+                // Munculkan popup setiap kali halaman dimuat/di-refresh
+                popup.style.display = 'flex';
 
                 const closeAction = () => { popup.style.display = 'none'; };
                 closeBtn.addEventListener('click', closeAction);
