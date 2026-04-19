@@ -51,6 +51,7 @@
 
         *, *::before, *::after { box-sizing: border-box; }
         html, body { margin: 0; padding: 0; }
+        img { max-width: 100%; height: auto; }
         body {
             font-family: 'Plus Jakarta Sans', -apple-system, system-ui, sans-serif;
             background: var(--bg);
@@ -321,6 +322,9 @@
             aspect-ratio: 16/10;
             background: linear-gradient(135deg, var(--purple-100), var(--purple-50));
             position: relative;
+        }
+        .fasilitas-image img {
+            width: 100%; height: 100%; object-fit: cover;
         }
         .fasilitas-image .tile-pattern {
             position: absolute; inset: 0;

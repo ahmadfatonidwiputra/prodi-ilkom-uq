@@ -113,28 +113,30 @@
             </div>
 
             <div class="grid g-3">
-
                 @php
-                    $defaultFasilitas = [
-                        ['name' => 'Lab Pemrograman', 'desc' => 'Lab khusus pemrograman dengan 40 workstation iMac & PC, dilengkapi IDE profesional dan akses GPU untuk ML.', 'tag' => 'LAB/PROG', 'route' => 'fasilitas.lab-pemrograman'],
-                        ['name' => 'Lab Jaringan Komputer', 'desc' => 'Lab simulasi jaringan dengan Cisco rack, perangkat switch/router enterprise, dan sandbox untuk eksperimen keamanan.', 'tag' => 'LAB/NET', 'route' => 'fasilitas.lab-jaringan-komputer'],
-                        ['name' => 'Coding Learn Center', 'desc' => 'Ruang kolaboratif 24/7 untuk mahasiswa berdiskusi, mengerjakan proyek, dan mengikuti bootcamp internal.', 'tag' => 'COWORK', 'route' => 'fasilitas.coding-learn'],
-                    ];
+                    $mappedFasilitas = $fasilitasSlides->isEmpty() ? collect([
+                        ['title' => 'Lab Pemrograman', 'body' => 'Lab khusus pemrograman dengan 40 workstation iMac & PC, dilengkapi IDE profesional dan akses GPU untuk ML.', 'tag' => 'LAB/PROG', 'detail_url' => route('fasilitas.lab-pemrograman'), 'image_url' => null],
+                        ['title' => 'Lab Jaringan Komputer', 'body' => 'Lab simulasi jaringan dengan Cisco rack, perangkat switch/router enterprise, dan sandbox untuk eksperimen keamanan.', 'tag' => 'LAB/NET', 'detail_url' => route('fasilitas.lab-jaringan-komputer'), 'image_url' => null],
+                        ['title' => 'Coding Learn Center', 'body' => 'Ruang kolaboratif 24/7 untuk mahasiswa berdiskusi, mengerjakan proyek, dan mengikuti bootcamp internal.', 'tag' => 'COWORK', 'detail_url' => route('fasilitas.coding-learn'), 'image_url' => null],
+                    ]) : $fasilitasSlides->take(3);
                 @endphp
 
-                @foreach ($defaultFasilitas as $f)
-                    <a href="{{ route($f['route']) }}" class="fasilitas-card" style="text-decoration: none;">
+                @foreach ($mappedFasilitas as $f)
+                    <a href="{{ $f['detail_url'] }}" class="fasilitas-card" style="text-decoration: none;">
                         <div class="fasilitas-image">
-                            <div class="tile-pattern"></div>
-                            <div class="label">{{ $f['tag'] }}</div>
+                            @if (!empty($f['image_url']))
+                                <img src="{{ $f['image_url'] }}" alt="{{ $f['title'] }}">
+                            @else
+                                <div class="tile-pattern"></div>
+                                <div class="label">{{ $f['tag'] ?? 'FASILITAS' }}</div>
+                            @endif
                         </div>
                         <div class="fasilitas-body">
-                            <h4>{{ $f['name'] }}</h4>
-                            <p>{{ $f['desc'] }}</p>
+                            <h4>{{ $f['title'] }}</h4>
+                            <p>{{ Str::limit(strip_tags($f['body']), 120) }}</p>
                         </div>
                     </a>
                 @endforeach
-
             </div>
         </div>
     </section>
