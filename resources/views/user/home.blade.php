@@ -183,4 +183,70 @@
         </div>
     </section>
 
+    {{-- ===== POPUP BERANDA ===== --}}
+    <div id="homePopup" class="home-popup" style="display: none;">
+        <div class="home-popup-overlay"></div>
+        <div class="home-popup-content">
+            <button id="closePopup" class="home-popup-close">✕</button>
+            <img src="{{ asset('images/popup-dies-natalis.jpg') }}" alt="Dies Natalis Universitas Bima Internasional">
+        </div>
+    </div>
+
+    @push('styles')
+    <style>
+        .home-popup {
+            position: fixed; inset: 0; z-index: 9999;
+            align-items: center; justify-content: center;
+            padding: 24px;
+        }
+        .home-popup-overlay {
+            position: absolute; inset: 0;
+            background: rgba(20, 17, 42, 0.7); backdrop-filter: blur(8px);
+        }
+        .home-popup-content {
+            position: relative; max-width: 500px; width: 100%;
+            background: transparent; border-radius: 16px;
+            box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+            animation: popIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+        }
+        .home-popup-content img {
+            width: 100%; height: auto; display: block; border-radius: inherit;
+        }
+        .home-popup-close {
+            position: absolute; top: 12px; right: 12px;
+            background: rgba(255,255,255,0.25); color: #fff; backdrop-filter: blur(4px);
+            border: none; width: 34px; height: 34px; border-radius: 50%;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            font-size: 14px; font-weight: bold; transition: background 0.2s, color 0.2s;
+        }
+        .home-popup-close:hover { background: #fff; color: var(--ink); }
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.9) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+    </style>
+    @endpush
+
+    @push('scripts')
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var popup = document.getElementById('homePopup');
+            var closeBtn = document.getElementById('closePopup');
+            var overlay = document.querySelector('.home-popup-overlay');
+
+            // Use sessionStorage so the popup only shows once per tab session
+            // to avoid annoying returning users every time they visit Home.
+            if (!sessionStorage.getItem('diesNatalisPopupShown')) {
+                popup.style.display = 'flex';
+                sessionStorage.setItem('diesNatalisPopupShown', 'true');
+            }
+
+            const closeAction = () => { popup.style.display = 'none'; };
+            closeBtn.addEventListener('click', closeAction);
+            overlay.addEventListener('click', closeAction);
+        });
+    </script>
+    @endpush
+
 @endsection
